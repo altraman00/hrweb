@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+
+	<servlet>
+		<servlet-name>apmsys</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:hrweb-servlet.xml</param-value>
+		</init-param>
+		
+		<init-param>  
+            <param-name>dispatchOptionsRequest</param-name>  
+            <param-value>true</param-value>  
+        </init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>apmsys</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>FileUploadServlet</servlet-name>
+		<servlet-class>com.sunlands.hr.servlet.FileUploadServlet</servlet-class>
+		<init-param> <!-- Servlet的初始化参数，配置上传文件的保存路径，这里是当前应用的uplods目录下 -->
+			<param-name>savePath</param-name>
+			<param-value>uploads</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FileUploadServlet</servlet-name>
+		<url-pattern>/servlet/FileUploadServlet</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+
+</web-app>
