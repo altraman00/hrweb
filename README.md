@@ -31,6 +31,11 @@
 
     2.然后下载官方的hanlp.properties放在项目的classpath的任何目录下都可以，hanlp会自动获取hanlp.properties位置，将文件中的root路径更改为刚才下载解压的data.zip的路径，如root=C:/parse_word_dic/HanLP/data-for-1.3.3或者root=hanlp_data_dic/data-for-1.3.3。
 
+官方地址：
+
+http://hanlp.linrunsoft.com/index.html
+
+https://github.com/hankcs/HanLP
 
 详细配置可以参考：
 http://blog.csdn.net/a_step_further/article/details/50333961
