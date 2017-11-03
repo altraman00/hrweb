@@ -13,9 +13,12 @@ public class MainTest {
 	
 	/**
 	 * 测试分析效果
-	 * 
-	 * @param args
-	 * @throws IOException
+	* @Title: main 
+	* @Description: TODO(这里用一句话描述这个方法的作用) 
+	* @param @param args
+	* @param @throws IOException    设定文件 
+	* @return void    返回类型 
+	* @throws
 	 */
 	public static void main(String[] args) throws IOException {
 		
