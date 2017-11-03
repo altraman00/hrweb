@@ -12,7 +12,7 @@ import com.sunlands.hr.utils.file.Txt;
 public class MainTest {
 	
 	/**
-	 * 测试分析效果 456789
+	 * 测试分析效果
  	*	测试分析效果 123456	456 123
 	* @Title: main 
 	* @Description: TODO(这里用一句话描述这个方法的作用) 
@@ -36,8 +36,6 @@ public class MainTest {
 		ArrayList<String> list = Txt.getFile(relativelyPath + "\\src\\main\\resumefiles");//文件放在项目中
 
 		for (String file : list) {
-			
-			System.out.println(file.length());
 			
 			createResumeStr.getFileContent(file);
 		}
