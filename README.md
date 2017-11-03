@@ -29,9 +29,9 @@
 
     2、如果有需要自定义词典
 
-        2.1、需要从官方下载词典库http://hanlp.linrunsoft.com/services.html 下载data.zip ，将词典库放在本地其他路径或者放在项目中的resources下；
+        2.1、需要从官方下载词典库http://hanlp.linrunsoft.com/services.html 下载data.zip ，将词典库放在本地其他路径或者放在项目中的resources下；
 
-        2.2、然后下载官方的hanlp.properties放在项目的classpath的任何目录下都可以，hanlp会自动获取hanlp.properties位置，将文件中的root路径更改为刚才下载解压的data.zip的路径，如root=C:/parse_word_dic/HanLP/data-for-1.3.3或者root=hanlp_data_dic/data-for-1.3.3。
+        2.2、然后下载官方的hanlp.properties放在项目的classpath的任何目录下都可以，hanlp会自动获取hanlp.properties位置，将文件中的root路径更改为刚才下载解压的data.zip的路径，如root=C:/parse_word_dic/HanLP/data-for-1.3.3或者root=hanlp_data_dic/data-for-1.3.3。
 
 官方地址：
 
