@@ -12,9 +12,13 @@ import com.sunlands.hr.utils.file.Txt;
 public class MainTest {
 	
 	/**
+<<<<<<< HEAD
 	 * 测试分析效果 123
 	 * 
 	 * 
+=======
+	 * 测试分析效果 456
+>>>>>>> branch 'master' of https://github.com/altraman00/hrweb.git
 	* @Title: main 
 	* @Description: TODO(这里用一句话描述这个方法的作用) 
 	* @param @param args
