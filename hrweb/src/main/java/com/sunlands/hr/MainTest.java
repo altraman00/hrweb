@@ -12,12 +12,7 @@ import com.sunlands.hr.utils.file.Txt;
 public class MainTest {
 	
 	/**
-	 * 测试分析效果123456987
-	 * 123 456
-	 * 
-	 * 测试2
-	 * 
-	 * 测试3
+	 * 测试分析效果
 	 * 
 	 * @param args
 	 * @throws IOException
