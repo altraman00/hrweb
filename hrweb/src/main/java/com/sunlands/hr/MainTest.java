@@ -10,7 +10,12 @@ import com.sunlands.hr.servers.CreateResumeStr;
 import com.sunlands.hr.utils.file.Txt;
 
 public class MainTest {
-
+	
+	/**
+	 * 测试分析效果
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:hrweb-servlet.xml");
