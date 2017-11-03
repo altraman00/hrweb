@@ -11,9 +11,8 @@ import com.sunlands.hr.utils.file.Txt;
 
 public class MainTest {
 	
-	/**
-	 * 测试分析效果
- 	*	测试分析效果 123456	456 123
+  /**
+	* 测试分析效果
 	* @Title: main 
 	* @Description: TODO(这里用一句话描述这个方法的作用) 
 	* @param @param args
