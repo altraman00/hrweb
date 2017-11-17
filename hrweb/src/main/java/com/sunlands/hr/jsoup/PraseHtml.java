@@ -49,13 +49,13 @@ public class PraseHtml {
 		String sex = arr[0];		//性别
 		String age = arr[1];		//年龄
 		String workLength = arr[2];	//工作年限
-		String education = arr[3];	//学历
+		String degree = arr[3];	//学历
 		String isMarry = arr[4];	//是否结婚
 		
 		resultMap.put("sex", sex);
 		resultMap.put("age", age);
 		resultMap.put("workLength", workLength);
-		resultMap.put("education", education);
+		resultMap.put("degree", degree);
 		resultMap.put("isMarry", isMarry);
 		
 		String summaryTop = doc.getElementsByClass("summary-top").html();
@@ -157,7 +157,7 @@ public class PraseHtml {
 		for(int pj = 0; pj < project_h2.size() ; pj++){
 			projectMap = new HashMap<>();
 			
-			String[] projectTitle = project_h2.get(pj).text().split("  ");;
+			String[] projectTitle = project_h2.get(pj).text().split("  ");
 			String projectDate = projectTitle[0];
 			String projectName = projectTitle[1];
 			projectMap.put("projectDate", projectDate);
@@ -178,6 +178,57 @@ public class PraseHtml {
 		}
 		
 		resultMap.put("projectList", projectList);
+		
+		
+		List<HashMap<String,String>> educationList = new ArrayList<>();
+		HashMap<String,String> educationMap = null;
+		Elements educationStr = doc.select("#resumeContentBody").select("div.educationContent");
+		for(int edu = 0;edu<educationStr.size();edu++){
+			educationMap = new HashMap<>();
+			String[] education = educationStr.get(edu).text().split("  ");
+			String educationTime = education[0];
+			String university = education[1];
+			String major = education[2];
+			String eduDegree = education[3];
+			
+			educationMap.put("educationTime", educationTime);
+			educationMap.put("university", university);
+			educationMap.put("major", major);
+			educationMap.put("eduDegree", eduDegree);
+			
+			educationList.add(educationMap);
+		}
+		
+		resultMap.put("educationList", educationList);
+		
+		
+		List<HashMap<String,String>> certificateList = new ArrayList<>();
+		HashMap<String,String> certificateMap = null;
+		Elements certificate = doc.select("#resumeContentBody").select("div:nth-child(8)").select("h2");
+		if(certificate != null){
+			for(int ctf=0;ctf<certificate.size();ctf++){
+				certificateMap = new HashMap<>();
+				String[] certificateStr = certificate.get(ctf).text().split("  ");
+				String time = certificateStr[0];
+				String certificateName = certificateStr[1];
+				certificateMap.put("time", time);
+				certificateMap.put("certificateName", certificateName);
+				certificateList.add(certificateMap);
+			}
+		}
+		
+		resultMap.put("certificateList", certificateList);
+		
+		List<String> languageList = new ArrayList<>();
+		Elements language = doc.getElementsByClass("resume-preview-line-height");
+		if(language != null){
+			for(int lan=0;lan<language.size();lan++){
+				String languageStr = language.get(lan).text();
+				languageList.add(languageStr);
+			}
+		}
+		
+		resultMap.put("languageList", languageList);
 		
 		
 		System.out.println(gs.toJson(resultMap));
