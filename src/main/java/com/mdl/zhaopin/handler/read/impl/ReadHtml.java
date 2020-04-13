@@ -1,7 +1,7 @@
-package com.mdl.zhaopin.service.read.impl;
+package com.mdl.zhaopin.handler.read.impl;
 
 
-import com.mdl.zhaopin.service.read.ReadFile;
+import com.mdl.zhaopin.handler.read.ReadFile;
 import com.mdl.zhaopin.utils.RegexUtils;
 
 import java.util.regex.Pattern;

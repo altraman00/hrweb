@@ -1,9 +1,9 @@
-package com.mdl.zhaopin.service.hanlp.prase;
+package com.mdl.zhaopin.handler.hanlp.prase;
 
 
-import com.mdl.zhaopin.service.hanlp.factory.ParseFileFactory;
-import com.mdl.zhaopin.service.read.ReadFile;
-import com.mdl.zhaopin.service.read.impl.ReadTxt;
+import com.mdl.zhaopin.handler.hanlp.factory.ParseFileFactory;
+import com.mdl.zhaopin.handler.read.ReadFile;
+import com.mdl.zhaopin.handler.read.impl.ReadTxt;
 import com.mdl.zhaopin.utils.RegexUtils;
 
 public class ParseTxt extends ParseFileFactory {

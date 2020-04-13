@@ -1,4 +1,4 @@
-package com.mdl.zhaopin.service.hanlp.factory;
+package com.mdl.zhaopin.handler.hanlp.factory;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -1,10 +1,10 @@
-package com.mdl.zhaopin.service.hanlp;
+package com.mdl.zhaopin.handler.hanlp;
 
 import com.hankcs.hanlp.HanLP;
 
 /**
  * @Project : reusme-parse
- * @Package Name : com.mdl.zhaopin.service.hanlp
+ * @Package Name : com.mdl.zhaopin.handler.hanlp
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2020年01月17日 14:57

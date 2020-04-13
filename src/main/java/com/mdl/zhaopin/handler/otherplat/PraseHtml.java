@@ -1,4 +1,4 @@
-package com.mdl.zhaopin.service.otherplat;
+package com.mdl.zhaopin.handler.otherplat;
 
 import com.mdl.zhaopin.utils.TxtUtils;
 import org.jsoup.Jsoup;
