@@ -1,6 +1,6 @@
 package com.mdl.zhaopin.handler.platform.parse;
 
-import com.mdl.zhaopin.handler.platform.resume.Job51DocResume;
+import com.mdl.zhaopin.handler.platform.resume.Job51Resume;
 import com.mdl.zhaopin.handler.platform.resume.Resume;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -30,7 +30,7 @@ public class Job51DocParser extends AbstractParser {
     @Override
     public Resume parse(File file) throws Exception {
 
-        Job51DocResume job51DocResume = new Job51DocResume();
+        Job51Resume job51Resume = new Job51Resume();
 
         String doc = mht2html(file);
 
@@ -47,7 +47,7 @@ public class Job51DocParser extends AbstractParser {
             } else if (userName.contains("标签")) {
                 userName = userName.substring(0, userName.indexOf("标签"));
             }
-            job51DocResume.setName(userName);
+            job51Resume.setName(userName);
         }
 
         // 个人信息
@@ -60,19 +60,18 @@ public class Job51DocParser extends AbstractParser {
                 if (str.contains("工作经验")) {
                     int index = str.indexOf("年");
                     if (index > 0) {
-                        job51DocResume.setWorkDuration(str.substring(0, index).trim());
+                        job51Resume.setWorkDuration(str.substring(0, index).trim());
                     }
                 } else if (str.contains("岁")) {
                     int index = str.indexOf("岁");
-                    job51DocResume.setAge(str.substring(0, index).trim());
+                    job51Resume.setAge(str.substring(0, index).trim());
                 } else if (str.contains("男")) {
-                    job51DocResume.setSex("男");
+                    job51Resume.setSex("男");
                 } else if (str.contains("女")) {
-                    job51DocResume.setSex("女");
+                    job51Resume.setSex("女");
                 }
             }
         }
-
 
         return null;
     }

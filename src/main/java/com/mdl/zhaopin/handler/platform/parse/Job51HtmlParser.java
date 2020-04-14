@@ -1,6 +1,6 @@
 package com.mdl.zhaopin.handler.platform.parse;
 
-import com.mdl.zhaopin.handler.platform.resume.Job51HtmlResume;
+import com.mdl.zhaopin.handler.platform.resume.Job51Resume;
 import com.mdl.zhaopin.handler.platform.resume.Resume;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -35,7 +35,7 @@ public class Job51HtmlParser extends AbstractParser {
     @Override
     public Resume parse(File file) throws IOException {
 
-        Job51HtmlResume job51HtmlResume = new Job51HtmlResume();
+        Job51Resume job51HtmlResume = new Job51Resume();
 
         // 前程无忧的html文件 编码都是gbk
         Document document = Jsoup.parse(file, "gbk");
@@ -66,7 +66,7 @@ public class Job51HtmlParser extends AbstractParser {
             }
         }
 
-        return new Job51HtmlResume();
+        return new Job51Resume();
     }
 
 }

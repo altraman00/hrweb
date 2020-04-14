@@ -35,6 +35,24 @@ public abstract class AbstractResume implements Resume {
     /** 邮箱 **/
     private String mail;
 
+    /** 简历来源渠道 */
+    private String source;
+
+    /** 生日 */
+    private String birthday;
+
+    /** 职位 */
+    private String job;
+
+    /** 所在公司 */
+    private String company;
+
+    /** 所在城市 */
+    private String city;
+
+    /** 现住址 */
+    private String address;
+
 
     @Override
     public String getName() {
@@ -106,5 +124,59 @@ public abstract class AbstractResume implements Resume {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    @Override
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    @Override
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    @Override
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    @Override
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    @Override
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

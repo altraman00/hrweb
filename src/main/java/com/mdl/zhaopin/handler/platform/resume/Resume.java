@@ -35,4 +35,24 @@ public interface Resume {
     /** 电子邮箱 */
     String getMail();
 
+    /** 简历来源渠道 */
+    String getSource();
+
+    /** 生日 */
+    String getBirthday();
+
+    /** 职位 */
+    String getJob();
+
+    /** 所在公司 */
+    String getCompany();
+
+    /** 所在城市 */
+    String getCity();
+
+    /** 现住址 */
+    String getAddress();
+
+
+
 }
