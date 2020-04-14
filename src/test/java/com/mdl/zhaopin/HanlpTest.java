@@ -4,8 +4,6 @@ import com.mdl.zhaopin.DTO.ResumeBaseDTO;
 import com.mdl.zhaopin.service.ParseResumeService;
 import com.mdl.zhaopin.service.impl.ParseResumeServiceImpl;
 import com.mdl.zhaopin.utils.JsonTools;
-import com.mdl.zhaopin.utils.TxtUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 

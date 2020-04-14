@@ -38,6 +38,11 @@ public class ParseResumeServiceImpl implements ParseResumeService {
             }
         }
 
+        //txt文本格式，上述方法校验不出来，先暂时直接设置用txt解析
+        if(filePath.endsWith("txt")){
+            strategyParseFile.setParseFileStrategy(new TurnTxtToText(filePath));
+        }
+
         //使用nlp解析方式对文件进行解析
         HanlpPraseResume hanlpPraseResume = strategyParseFile.readFile().separateWords();
         int age = hanlpPraseResume.getAge();

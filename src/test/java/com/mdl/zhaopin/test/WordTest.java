@@ -7,14 +7,9 @@ import com.hankcs.hanlp.corpus.document.sentence.word.IWord;
 import com.hankcs.hanlp.corpus.occurrence.TermFrequency;
 import com.hankcs.hanlp.mining.word.TermFrequencyCounter;
 import com.hankcs.hanlp.mining.word.WordInfo;
-import com.hankcs.hanlp.seg.Dijkstra.DijkstraSegment;
-import com.hankcs.hanlp.seg.NShort.NShortSegment;
-import com.hankcs.hanlp.seg.Segment;
 import com.hankcs.hanlp.seg.common.Term;
 import com.hankcs.hanlp.suggest.Suggester;
 import com.hankcs.hanlp.tokenizer.NLPTokenizer;
-import com.hankcs.hanlp.tokenizer.SpeedTokenizer;
-import com.hankcs.hanlp.tokenizer.StandardTokenizer;
 import com.mdl.zhaopin.utils.TxtUtils;
 
 import java.util.List;

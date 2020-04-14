@@ -7,7 +7,7 @@ import com.mdl.zhaopin.utils.RegexUtils;
 
 public class TurnTxtToText extends HanlpPraseResume {
 
-	private String filePath = null;
+	private String filePath;
 
 	public TurnTxtToText(String filePath) {
 		this.filePath = filePath;
