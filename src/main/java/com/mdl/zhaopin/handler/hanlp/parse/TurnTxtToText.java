@@ -1,19 +1,19 @@
-package com.mdl.zhaopin.handler.hanlp.prase;
+package com.mdl.zhaopin.handler.hanlp.parse;
 
 
-import com.mdl.zhaopin.handler.hanlp.factory.ParseFileFactory;
-import com.mdl.zhaopin.handler.read.ReadFile;
-import com.mdl.zhaopin.handler.read.impl.ReadTxt;
+import com.mdl.zhaopin.handler.hanlp.read.ReadFile;
+import com.mdl.zhaopin.handler.hanlp.read.impl.ReadTxt;
 import com.mdl.zhaopin.utils.RegexUtils;
 
-public class ParseTxt extends ParseFileFactory {
+public class TurnTxtToText extends HanlpPraseResume {
 
 	private String filePath = null;
 
-	public ParseTxt(String filePath) {
+	public TurnTxtToText(String filePath) {
 		this.filePath = filePath;
 	}
 
+	@Override
 	public String readFile() {
 
 		ReadFile readTxt = new ReadTxt();

@@ -1,4 +1,4 @@
-package com.mdl.zhaopin.handler.read;
+package com.mdl.zhaopin.handler.hanlp.read;
 
 public interface ReadFile {
 

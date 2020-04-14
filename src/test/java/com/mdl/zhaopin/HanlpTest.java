@@ -3,6 +3,7 @@ package com.mdl.zhaopin;
 import com.mdl.zhaopin.DTO.ResumeBaseDTO;
 import com.mdl.zhaopin.service.ParseResumeService;
 import com.mdl.zhaopin.service.impl.ParseResumeServiceImpl;
+import com.mdl.zhaopin.utils.JsonTools;
 import com.mdl.zhaopin.utils.TxtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,12 +23,12 @@ public class HanlpTest {
     public static void main(String[] args) throws IOException {
 
         String path = System.getProperty("user.dir");
-        String resumePath = TxtUtils.read(path + "/src/main/resumefiles/1-夏小为.txt");
-
+//        String resumeStr = TxtUtils.read(path + "/src/main/resumefiles/1-夏小为.txt");
+        String resumePath = path + "/src/main/resumefiles/1-夏小为.txt";
         ParseResumeService service = new ParseResumeServiceImpl();
         ResumeBaseDTO resumeInfo = service.getResumeInfo(resumePath);
 
-        System.out.println();
+        System.out.println(JsonTools.obj2String(resumeInfo));
 
     }
 

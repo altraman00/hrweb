@@ -1,84 +1,64 @@
 package com.mdl.zhaopin.service.impl;
 
 import com.mdl.zhaopin.DTO.ResumeBaseDTO;
+import com.mdl.zhaopin.handler.hanlp.parse.StrategyParseFile;
 import com.mdl.zhaopin.service.ParseResumeService;
-import com.mdl.zhaopin.handler.hanlp.factory.ParseFileFactory;
-import com.mdl.zhaopin.handler.hanlp.prase.ParseHtml;
-import com.mdl.zhaopin.handler.hanlp.prase.ParsePdf;
-import com.mdl.zhaopin.handler.hanlp.prase.ParseTxt;
-import com.mdl.zhaopin.handler.hanlp.prase.ParseWord;
+import com.mdl.zhaopin.handler.hanlp.parse.HanlpPraseResume;
+import com.mdl.zhaopin.handler.hanlp.parse.TurnHtmlToText;
+import com.mdl.zhaopin.handler.hanlp.parse.TurnPdfToText;
+import com.mdl.zhaopin.handler.hanlp.parse.TurnTxtToText;
+import com.mdl.zhaopin.handler.hanlp.parse.TurnWordToText;
 import com.mdl.zhaopin.utils.CheckFileType;
+import com.mdl.zhaopin.utils.JsonTools;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 
 @Component
 public class ParseResumeServiceImpl implements ParseResumeService {
 
     @Override
-    public ResumeBaseDTO getResumeInfo(String filePath) {
+    public ResumeBaseDTO getResumeInfo(String filePath) throws IOException {
 
-        ParseFileFactory file = null;
-
+        //检查文件的类型
         String fileType = CheckFileType.getFileType(filePath);
 
-        ResumeBaseDTO resumeInfo = null;
-
+        //下面使用策略模式，对不同格式的文件提取文本内容
+        StrategyParseFile strategyParseFile = new StrategyParseFile();
         if (fileType != null) {
             if (fileType.endsWith("htm") || fileType.endsWith("html")) {
-                file = new ParseHtml(filePath);
+                strategyParseFile.setParseFileStrategy(new TurnHtmlToText(filePath));
             } else if (fileType.endsWith("wps") || fileType.endsWith("doc") || filePath.endsWith("docx")) {
-                file = new ParseWord(filePath);
+                strategyParseFile.setParseFileStrategy(new TurnWordToText(filePath));
             } else if (fileType.endsWith("pdf")) {
-                file = new ParsePdf(filePath);
+                strategyParseFile.setParseFileStrategy(new TurnPdfToText(filePath));
             } else if (fileType.endsWith("txt")) {
-                file = new ParseTxt(filePath);
-            }
-
-            if (file != null) {
-                resumeInfo = getResumeInfo(file);
+                strategyParseFile.setParseFileStrategy(new TurnTxtToText(filePath));
             }
         }
 
-        if (filePath.endsWith(".txt")) {
-            file = new ParseTxt(filePath);
-            resumeInfo = getResumeInfo(file);
-        }
+        //使用nlp解析方式对文件进行解析
+        HanlpPraseResume hanlpPraseResume = strategyParseFile.readFile().separateWords();
+        int age = hanlpPraseResume.getAge();
+        String name = hanlpPraseResume.getName();
+        String email = hanlpPraseResume.getEmail();
+        String sex = hanlpPraseResume.getSex();
+        String phone = hanlpPraseResume.getPhone();
+        String university = hanlpPraseResume.getUniversity();
+        String address = hanlpPraseResume.getAddress();
+        String profession = hanlpPraseResume.getProfession();
+        String specialized = hanlpPraseResume.getSpecialized();
+        String degree = hanlpPraseResume.getDegree();
 
-        return resumeInfo;
-
-    }
-
-    private ResumeBaseDTO getResumeInfo(ParseFileFactory doc){
-        doc.readFile();
-        doc.separateWords();
-        int age = doc.getAge();
-        String name = doc.getName();
-        String email = doc.getEmail();
-        String sex = doc.getSex();
-        String phone = doc.getPhone();
-        String university = doc.getUniversity();
-//		String address = doc.getAddress();
-        String address = "";
-        String profession = doc.getProfession();
-        String specialized = doc.getSpecialized();
-        String degree = doc.getDegree();
-
-        String workLength = doc.getWorkLength();
-
-//		System.out.println("workLength--->" + workLength);
-
-		List<String> keyword = doc.getKeyword();
-//		List<String> projectList = doc.getProjectList();// 项目经验
+        String workLength = hanlpPraseResume.getWorkLength();
+        List<String> keyword = hanlpPraseResume.getKeyword();
+        List<String> projectList = hanlpPraseResume.getProjectList();
 
         ResumeBaseDTO resume = new ResumeBaseDTO();
-
-        if (age != 0) {
-            resume.setAge(age + "");
-        }
         resume.setName(name);
         resume.setSex(sex);
-        resume.setAge(age + "");
+        resume.setAge(age);
         resume.setWorkLength(workLength);
         resume.setPhone(phone);
         resume.setEmail(email);
@@ -86,12 +66,12 @@ public class ParseResumeServiceImpl implements ParseResumeService {
         resume.setUniversity(university);
         resume.setExpectPlace(address);
         resume.setMajor(specialized);
+        resume.setProfession(profession);
 
-//		String resumeStr = gson.toJson(resume);
-
-//		System.out.println(resumeStr + "/n");
-
+        String resumeStr = JsonTools.obj2String(resume);
+        System.out.println(resumeStr + "/n");
         return resume;
+
     }
 
 }

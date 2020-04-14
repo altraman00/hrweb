@@ -1,4 +1,4 @@
-package com.mdl.zhaopin.handler.hanlp.factory;
+package com.mdl.zhaopin.handler.hanlp.parse;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public abstract class ParseFileFactory {
+public abstract class HanlpPraseResume {
 
     public List<Term> termList;
 
@@ -29,19 +29,21 @@ public abstract class ParseFileFactory {
         return separateStr;
     }
 
-    public List<Term> separateWords() {
+    public HanlpPraseResume separateWords() throws IOException {
 
         // HanLP.Config.ShowTermNature = false; // 关闭词性显示
 
         // 标准分词器
         Segment segment = HanLP.newSegment()
-                // 开启词性标注
+                // 激活数词和英文识别
                 .enablePartOfSpeechTagging(true)
                 // 开启人名识别
+                //（目前分词器基本上都默认开启了音译人名识别，即使不加下面代码也开启了）
                 .enableNameRecognize(true)
-                // 开启地名识别
+                // 开启地名识别（比较耗性能）
                 .enablePlaceRecognize(true)
                 // 开启机构分析功能
+                //目前分词器默认关闭了机构名识别，用户需要手动开启；这是因为消耗性能
                 .enableOrganizationRecognize(true)
                 // 开启用户词典
                 .enableCustomDictionary(false)
@@ -52,8 +54,7 @@ public abstract class ParseFileFactory {
 
         termList = segment.seg(this.separateStr);
 		System.out.println("\n标准分词器A：--->" + termList);
-
-        return termList;
+        return this;
     }
 
     /**
@@ -348,6 +349,15 @@ public abstract class ParseFileFactory {
     }
 
     /**
+     * 项目经验
+     * @param splitStr
+     * @return
+     */
+    public List<String> getProjectList() {
+        return null;
+    }
+
+    /**
      * 获取简历中所有的数据值
      *
      * @return
@@ -476,5 +486,7 @@ public abstract class ParseFileFactory {
         }
         return startDate;
     }
+
+
 
 }

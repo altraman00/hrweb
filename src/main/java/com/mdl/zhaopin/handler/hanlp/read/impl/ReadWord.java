@@ -1,6 +1,6 @@
-package com.mdl.zhaopin.handler.read.impl;
+package com.mdl.zhaopin.handler.hanlp.read.impl;
 
-import com.mdl.zhaopin.handler.read.ReadFile;
+import com.mdl.zhaopin.handler.hanlp.read.ReadFile;
 import com.mdl.zhaopin.utils.RegexUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hwpf.extractor.WordExtractor;

@@ -1,4 +1,4 @@
-package com.mdl.zhaopin.handler.otherplat;
+package com.mdl.zhaopin.handler.platform;
 
 import com.mdl.zhaopin.utils.TxtUtils;
 import org.jsoup.Jsoup;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PraseHtml {
+public class Prase51jobHtmlResume {
 
     public static void main(String[] args) {
         String str = TxtUtils.read("C:\\Users\\xiekun\\Desktop\\file\\html\\任晨光.html");

@@ -18,7 +18,7 @@ public class ResumeBaseDTO implements Serializable {
     private String sex;
 
     @ApiModelProperty("年龄")
-    private String age;
+    private Integer age = 18;
 
     @ApiModelProperty("工作年限")
     private String workLength;
@@ -40,5 +40,8 @@ public class ResumeBaseDTO implements Serializable {
 
     @ApiModelProperty("专业")
     private String major;
+
+    @ApiModelProperty("职业")
+    private String profession;
 
 }
