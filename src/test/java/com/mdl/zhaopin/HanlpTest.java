@@ -1,5 +1,13 @@
 package com.mdl.zhaopin;
 
+import com.mdl.zhaopin.DTO.ResumeBaseDTO;
+import com.mdl.zhaopin.service.ParseResumeService;
+import com.mdl.zhaopin.service.impl.ParseResumeServiceImpl;
+import com.mdl.zhaopin.utils.TxtUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.IOException;
+
 /**
  * @Project : reusme-parse
  * @Package Name : com.mdl.zhaopin
@@ -11,8 +19,17 @@ package com.mdl.zhaopin;
  */
 public class HanlpTest {
 
+    public static void main(String[] args) throws IOException {
 
+        String path = System.getProperty("user.dir");
+        String resumePath = TxtUtils.read(path + "/src/main/resumefiles/1-夏小为.txt");
 
+        ParseResumeService service = new ParseResumeServiceImpl();
+        ResumeBaseDTO resumeInfo = service.getResumeInfo(resumePath);
+
+        System.out.println();
+
+    }
 
 
 }

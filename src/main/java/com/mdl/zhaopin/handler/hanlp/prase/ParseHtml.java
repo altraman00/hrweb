@@ -7,23 +7,23 @@ import com.mdl.zhaopin.handler.read.impl.ReadHtml;
 
 public class ParseHtml extends ParseFileFactory {
 
-	private String filePath;
+    private String filePath;
 
-	public ParseHtml(String filePath) {
-		this.filePath = filePath;
-	}
+    public ParseHtml(String filePath) {
+        this.filePath = filePath;
+    }
 
-	@Override
-	public String readFile() {
+    @Override
+    public String readFile() {
 
-		ReadFile readHtml = new ReadHtml();
+        ReadFile readHtml = new ReadHtml();
 
-		String read = readHtml.read(filePath);
+        String read = readHtml.read(filePath);
 
-		super.separateStr = read;
+        super.separateStr = read;
 
-		return read;
+        return read;
 
-	}
+    }
 
 }

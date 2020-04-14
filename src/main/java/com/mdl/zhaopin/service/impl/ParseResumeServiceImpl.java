@@ -10,13 +10,13 @@ import com.mdl.zhaopin.handler.hanlp.prase.ParseWord;
 import com.mdl.zhaopin.utils.CheckFileType;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import java.util.List;
 
 @Component
 public class ParseResumeServiceImpl implements ParseResumeService {
 
     @Override
-    public ResumeBaseDTO getResumeInfo(String filePath) throws IOException {
+    public ResumeBaseDTO getResumeInfo(String filePath) {
 
         ParseFileFactory file = null;
 
@@ -49,7 +49,7 @@ public class ParseResumeServiceImpl implements ParseResumeService {
 
     }
 
-    private ResumeBaseDTO getResumeInfo(ParseFileFactory doc) throws IOException {
+    private ResumeBaseDTO getResumeInfo(ParseFileFactory doc){
         doc.readFile();
         doc.separateWords();
         int age = doc.getAge();
@@ -68,7 +68,7 @@ public class ParseResumeServiceImpl implements ParseResumeService {
 
 //		System.out.println("workLength--->" + workLength);
 
-//		List<String> keyword = doc.getKeyword();
+		List<String> keyword = doc.getKeyword();
 //		List<String> projectList = doc.getProjectList();// 项目经验
 
         ResumeBaseDTO resume = new ResumeBaseDTO();

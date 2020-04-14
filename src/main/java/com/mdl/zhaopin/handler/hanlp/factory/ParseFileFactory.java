@@ -51,8 +51,7 @@ public abstract class ParseFileFactory {
                 .enableOffset(true);
 
         termList = segment.seg(this.separateStr);
-
-//		System.out.println("\n标准分词器A：--->" + termList);
+		System.out.println("\n标准分词器A：--->" + termList);
 
         return termList;
     }
@@ -296,20 +295,21 @@ public abstract class ParseFileFactory {
         return email;
     }
 
-    // /**
-    // * 薪资
-    // * @return
-    // */
-    // public String getSalary() {
-    // String email = null;
-    // Pattern pattern = Pattern.compile("[^0-9]");
-    // Matcher matcher = pattern.matcher(separateStr);
-    // while (matcher.find()) {
-    // email = matcher.group();
-    // break;
-    // }
-    // return email;
-    // }
+    /**
+     * 薪资
+     *
+     * @return
+     */
+    public String getSalary() {
+        String email = null;
+        Pattern pattern = Pattern.compile("[^0-9]");
+        Matcher matcher = pattern.matcher(separateStr);
+        while (matcher.find()) {
+            email = matcher.group();
+            break;
+        }
+        return email;
+    }
 
     /**
      * 手机
@@ -396,10 +396,13 @@ public abstract class ParseFileFactory {
      */
     public String getWorkLength() {
         String length = "";
-        List<String> list = getDate("");// 获取简历中所有跟日期相关的date
+        // 获取简历中所有跟日期相关的date
+        List<String> list = getDate("");
         if (list.size() >= 2) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyyMM");// 设置日期格式
-            String currDate = df.format(new Date());// new Date()为获取当前系统时间
+            // 设置日期格式
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMM");
+            // new Date()为获取当前系统时间
+            String currDate = df.format(new Date());
             String sd = getWorkStartDate();
             if (!sd.isEmpty()) {
                 int startDate = sd.isEmpty() ? 0 : Integer.valueOf(sd);
@@ -429,7 +432,8 @@ public abstract class ParseFileFactory {
         String dateStr = "";
         String startDate = "";
         boolean flag = false;
-        // List<String> dList = getDate("");//获取简历中所有跟日期相关的date
+        //获取简历中所有跟日期相关的date
+        // List<String> dList = getDate("");
         List<String> dList = new ArrayList<>();
         List<String> numList = getNumList();
 
@@ -438,9 +442,10 @@ public abstract class ParseFileFactory {
             dList.addAll(getDateList(string, ""));
         }
 
+        // 判断学历
         List<String> dateRes = new ArrayList<>();
         for (int i = 0; i < termList.size(); i++) {
-            Nature pcNature = Nature.fromString("xl");// 判断学历
+            Nature pcNature = Nature.fromString("xl");
             Term termStr = termList.get(i);
             if (!flag) {
                 if (termStr.nature.equals(pcNature)) {
@@ -449,15 +454,18 @@ public abstract class ParseFileFactory {
                 }
             }
 
-            if (flag && i <= n + 5) {// 如果出现了学历字眼，则往后面查询最多5个分析，取出中间的日期
+            //如果出现了学历字眼，则往后面查询最多5个分析，取出中间的日期
+            if (flag && i <= n + 5) {
                 dateStr = dateStr.concat(termStr.word);
                 List<String> datelist = getDateList(dateStr, "");
                 Collections.sort(datelist);
                 dateRes.add(datelist.get(0));
             }
         }
+
+        // 将出现的所有的学历字眼相关的日期排序，取出最大的时间，基本可以断定为最高学历毕业时间，即为工作开始时间
         if (!dateRes.isEmpty()) {
-            Collections.sort(dateRes);// 将出现的所有的学历字眼相关的日期排序，取出最大的时间，基本可以断定为最高学历毕业时间，即为工作开始时间
+            Collections.sort(dateRes);
             startDate = dateRes.get(dateRes.size() - 1);
         } else if (!dList.isEmpty()) {
             int a = Integer.valueOf(dList.get(0));
