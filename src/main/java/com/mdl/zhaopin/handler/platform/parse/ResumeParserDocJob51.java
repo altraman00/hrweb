@@ -137,11 +137,8 @@ public class ResumeParserDocJob51 extends AbstractResumeParser {
 
     protected Document parse2HtmlAsMail(File file) throws Exception {
         InputStream in = new FileInputStream(file);
-
         Session mailSession = Session.getDefaultInstance(System.getProperties(), null);
-
         MimeMessage msg = new MimeMessage(mailSession, in);
-
         Multipart part = (Multipart) msg.getContent();
         String html = null;
         for (int i = 0; i < part.getCount(); i++) {
@@ -151,6 +148,7 @@ public class ResumeParserDocJob51 extends AbstractResumeParser {
             }
         }
         in.close();
+        System.out.println(html);
         return html == null ? null : Jsoup.parse(html);
     }
 
