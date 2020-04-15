@@ -1,6 +1,6 @@
 package com.mdl.zhaopin.handler.platform.parse;
 
-import com.mdl.zhaopin.handler.platform.resume.Job51Resume;
+import com.mdl.zhaopin.handler.platform.resume.ResumeJob51;
 import com.mdl.zhaopin.handler.platform.resume.Resume;
 import com.mdl.zhaopin.utils.JsonTools;
 import org.apache.commons.codec.binary.Base64;
@@ -28,7 +28,7 @@ import java.util.List;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public class Job51DocResumeParser extends AbstractResumeParser {
+public class ResumeParserDocJob51 extends AbstractResumeParser {
 
     @Override
     public String getName() {
@@ -53,7 +53,7 @@ public class Job51DocResumeParser extends AbstractResumeParser {
         if (doc == null) {
             doc = parse2Html(file);
         }
-        Job51Resume job51Resume = new Job51Resume();
+        ResumeJob51 job51Resume = new ResumeJob51();
 
         // 应聘人姓名
         String fileName = file.getName();
@@ -176,8 +176,8 @@ public class Job51DocResumeParser extends AbstractResumeParser {
         String filePath = "/Users/admin/Desktop/简历解析/51job_付必新_i销售经理(828854605).doc";
         File file = new File(filePath);
 
-        AbstractResumeParser resumeParser = new Job51DocResumeParser();
-        Job51Resume resume = (Job51Resume) resumeParser.parse(file);
+        AbstractResumeParser resumeParser = new ResumeParserDocJob51();
+        ResumeJob51 resume = (ResumeJob51) resumeParser.parse(file);
 
         System.out.println(JsonTools.obj2String(resume));
 

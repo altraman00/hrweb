@@ -9,7 +9,7 @@ package com.mdl.zhaopin.handler.platform.resume;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public class ZhilianResume extends AbstractResume implements Resume {
+public class ResumeZhilian extends AbstractResume implements Resume {
 
     private static final long serialVersionUID = 2093235400790350336L;
 
