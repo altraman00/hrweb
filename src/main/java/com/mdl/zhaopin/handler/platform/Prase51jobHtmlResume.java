@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class Prase51jobHtmlResume {
 
     public static void main(String[] args) {
-        String str = TxtUtils.read("C:\\Users\\xiekun\\Desktop\\file\\html\\任晨光.html");
+        String str = TxtUtils.read("/Users/admin/Desktop/简历解析/智联招聘_祝丽群_人力资源专员-BP方向_中文_20200415_1586922218697.html");
         System.out.println(praseHtml(str));
     }
 
