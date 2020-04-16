@@ -84,10 +84,10 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
         //简历亮点 #resumeDetail > div:nth-child(1)
         String 简历亮点 = resumeDetail.getElementsByClass("resume-recommend__section-body").text();
-        Elements dl = resumeDetail.getElementsByClass("resume-content__section is-career-objective").get(1)
-                .getElementsByClass("resume-content__section-body").select("dl").select("dd");
+        System.out.println("\n简历亮点" + 简历亮点);
 
         //求职意向
+        Elements dl = resumeDetail.select("div.resume-content__section.is-career-objective > div > dl > dd");
         String 期望工作地点 = dl.get(0).text().trim();
         String 期望月薪 = dl.get(1).text().trim();
         String 目前状况 = dl.get(2).text().trim();
@@ -214,43 +214,8 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             }
 
 
-
-
         }
 
-
-
-        System.out.println(elementsByClass1);
-        System.out.println(text5);
-
-//        /** resumeDetail > div > div > div.summary > div.summary-top > br  **/
-//        String summaryTop = doc.getElementsByClass("summary-top").html();
-//        String reg = "<br[^>]*>((?:(?!<br[^>]*>)[\\s\\S])*)";
-//        Pattern p = Pattern.compile(reg);
-//        Matcher m = p.matcher(summaryTop);
-//        String[] topArr = null;
-//        while (m.find()) {
-//            topArr = m.group(1).split("：");
-//        }
-//
-//        //现居住地
-//        String address = topArr[1].replace(" ", "").split("\\|")[0].trim();
-//        //户口
-//        String userAccount = topArr[2].trim().split("\\|")[1].trim();
-//        //政治面貌
-//        String politicalStatus = topArr[2].trim().split("\\|")[1].trim();
-//
-//        //#resumeDetail > div > div > div:nth-child(4)
-//        Elements select = resumeDetail.select("div").select("div").select("div").select("div:nth-child(4)");
-//        String h3 = select.select("h3").text();
-//
-//        Elements allItems = resumeDetail.getElementsByClass("resume-preview-left").get(0).getElementsByClass("resume-preview-all");
-//        for(Element item : allItems){
-//            String itemTitle = item.select("h3").text();
-//            String itemContent = item.select("h2").text();
-//            System.out.println(itemTitle);
-//            System.out.println(itemContent + "\n");
-//        }
 
         return resume;
     }
@@ -278,7 +243,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
     public static void main(String[] args) throws Exception {
 //        String filePath = "/Users/admin/Desktop/简历解析/智联招聘_底文娟_人力资源专员-BP方向_中文_20200415_1586922516067.html";
 //        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-html.html";
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-2.html";
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-李先生-插件.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserHtmlStrZhilian resumeParser = new ResumeParserHtmlStrZhilian();
