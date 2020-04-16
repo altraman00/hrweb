@@ -127,7 +127,6 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             /** 工作经历 **/
             if(next.attr("data-bind").equals("if: workExperience().length")){
                 System.out.println("------------------------------------------------工作经历------------------------------------------------");
-
                 //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header
                 Elements select = next.select("ul > li");
                 for(Element element : select){
@@ -144,8 +143,55 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
                     System.out.println("\n起止时间:" + 起止时间 + "\n公司:" + 公司 + "\n就职时长:" + 就职时长 + "\n技能标签:" + 技能标签 + "\n工作描述:" + 工作描述);
                 }
-
             }
+
+            /** 项目经验 **/
+            if(next.attr("data-bind").equals("if: projectExperience().length")) {
+                System.out.println("------------------------------------------------项目经验------------------------------------------------");
+            }
+
+            /** 专业技能 **/
+            if(next.attr("data-bind").equals("if: professionalSkill().length")) {
+                System.out.println("------------------------------------------------专业技能------------------------------------------------");
+            }
+
+            /** 自我评价 **/
+            if(next.attr("data-bind").equals("if: evaluate.content")) {
+                System.out.println("------------------------------------------------自我评价------------------------------------------------");
+
+                //#resumeDetail > div:nth-child(7) > div
+                String 自我评价 = next.select("div").get(1).text();
+                System.out.println("\n自我评价" + 自我评价);
+            }
+
+            /** 培训经历 **/
+            if(next.attr("data-bind").equals("if: trainingExperience().length")) {
+                System.out.println("------------------------------------------------培训经历------------------------------------------------");
+            }
+
+            /** 所获证书 **/
+            if(next.attr("data-bind").equals("if: achieveCertificate().length")) {
+                System.out.println("------------------------------------------------所获证书------------------------------------------------");
+            }
+
+            /** 在校情况 **/
+            if(next.attr("data-bind").equals("if: achieveScholarship().length || achieveAward().length || studyInfomation()")) {
+                System.out.println("------------------------------------------------在校情况------------------------------------------------");
+            }
+
+            /** 在校实践经验 **/
+            if(next.attr("data-bind").equals("if: socialEvents().length")) {
+                System.out.println("-----------------------------------------------在校实践经验----------------------------------------------");
+            }
+
+
+            /** 语言能力 **/
+            if(next.attr("data-bind").equals("if: languageSkill().length")) {
+                System.out.println("------------------------------------------------语言能力------------------------------------------------");
+            }
+
+
+
 
         }
 
