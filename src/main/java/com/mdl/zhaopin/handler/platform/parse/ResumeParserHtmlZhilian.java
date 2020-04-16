@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public class ResumeParserHtmlZhilian extends AbstractResumeParser {
+public class ResumeParserHtmlZhilian extends AbstractResumeParser implements ResumeFileParser{
 
     @Override
     public String getName() {
@@ -181,7 +181,7 @@ public class ResumeParserHtmlZhilian extends AbstractResumeParser {
     public static void main(String[] args) throws Exception {
         String filePath = "/Users/admin/Desktop/简历解析/智联招聘_底文娟_人力资源专员-BP方向_中文_20200415_1586922516067.html";
         File file = new File(filePath);
-        AbstractResumeParser resumeParser = new ResumeParserHtmlZhilian();
+        ResumeFileParser resumeParser = new ResumeParserHtmlZhilian();
         ResumeZhilian resume = (ResumeZhilian) resumeParser.parse(file);
         System.out.println(JsonTools.obj2String(resume));
     }

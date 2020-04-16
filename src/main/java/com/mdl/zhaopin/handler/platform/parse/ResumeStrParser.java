@@ -2,8 +2,6 @@ package com.mdl.zhaopin.handler.platform.parse;
 
 import com.mdl.zhaopin.handler.platform.resume.Resume;
 
-import java.io.File;
-
 /**
  * @Project : reusme-parse
  * @Package Name : com.mdl.zhaopin.handler.platform
@@ -13,12 +11,12 @@ import java.io.File;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public interface ResumeParser {
+public interface ResumeStrParser {
 
     String getName();
 
-    boolean canParse(File file);
+    boolean canParse(String resume);
 
-    Resume parse(File file) throws Exception;
+    Resume parse(String resume) throws Exception;
 
 }

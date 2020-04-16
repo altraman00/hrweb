@@ -28,7 +28,7 @@ import java.util.List;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public class ResumeParserDocJob51 extends AbstractResumeParser {
+public class ResumeParserDocJob51 extends AbstractResumeParser implements ResumeFileParser {
 
     @Override
     public String getName() {
@@ -148,7 +148,7 @@ public class ResumeParserDocJob51 extends AbstractResumeParser {
             }
         }
         in.close();
-        System.out.println(html);
+//        System.out.println(html);
         return html == null ? null : Jsoup.parse(html);
     }
 
@@ -173,10 +173,8 @@ public class ResumeParserDocJob51 extends AbstractResumeParser {
     public static void main(String[] args) throws Exception {
         String filePath = "/Users/admin/Desktop/简历解析/51job_付必新_i销售经理(828854605).doc";
         File file = new File(filePath);
-
-        AbstractResumeParser resumeParser = new ResumeParserDocJob51();
-        ResumeJob51 resume = (ResumeJob51) resumeParser.parse(file);
-
+        ResumeParserDocJob51 resumeParser = new ResumeParserDocJob51();
+        ResumeJob51 resume = (ResumeJob51)resumeParser.parse(file);
         System.out.println(JsonTools.obj2String(resume));
 
     }

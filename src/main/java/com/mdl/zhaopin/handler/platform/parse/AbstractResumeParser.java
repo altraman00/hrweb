@@ -12,7 +12,7 @@ import java.util.Map;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public abstract class AbstractResumeParser implements ResumeParser {
+public abstract class AbstractResumeParser  {
 
 
     /**
