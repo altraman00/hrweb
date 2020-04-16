@@ -192,6 +192,17 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             /** 培训经历 **/
             if(next.attr("data-bind").equals("if: trainingExperience().length")) {
                 System.out.println("\n------------------------------------------------培训经历------------------------------------------------");
+
+                //#resumeDetail > div:nth-child(7) > ul
+                Elements ul = next.select("ul > li");
+                for(Element element : ul){
+                    //#resumeDetail > div:nth-child(7) > ul > li > p > span:nth-child(1)
+                    String 培训时间 = element.select("p > span").text();
+                    //#resumeDetail > div:nth-child(7) > ul > li > dl > dd
+                    String 培训机构 = element.select("dl > dd").text();
+                    System.out.println("\n培训时间：" + 培训时间 + "\n培训机构：" + 培训机构);
+                }
+
             }
 
             /** 所获证书 **/
@@ -268,7 +279,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
     public static void main(String[] args) throws Exception {
 //        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-html.html";
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-李先生-插件.html";
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-任女士-插件.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserHtmlStrZhilian resumeParser = new ResumeParserHtmlStrZhilian();
