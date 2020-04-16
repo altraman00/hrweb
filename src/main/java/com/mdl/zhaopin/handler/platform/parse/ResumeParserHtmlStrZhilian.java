@@ -158,7 +158,6 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             /** 自我评价 **/
             if(next.attr("data-bind").equals("if: evaluate.content")) {
                 System.out.println("------------------------------------------------自我评价------------------------------------------------");
-
                 //#resumeDetail > div:nth-child(7) > div
                 String 自我评价 = next.select("div").get(1).text();
                 System.out.println("\n自我评价" + 自我评价);
@@ -172,6 +171,15 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             /** 所获证书 **/
             if(next.attr("data-bind").equals("if: achieveCertificate().length")) {
                 System.out.println("------------------------------------------------所获证书------------------------------------------------");
+
+                //#resumeDetail > div:nth-child(9) > ul
+                Elements ul = next.select("ul > li");
+                for(Element element : ul){
+                    //#resumeDetail > div:nth-child(9) > ul > li:nth-child(1)
+                    String 证书名字及时间 = element.text();
+                    System.out.println("\n证书名字及时间：" + 证书名字及时间);
+                }
+
             }
 
             /** 在校情况 **/
