@@ -87,18 +87,17 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
         //求职意向
         Elements dl = resumeDetail.select("div.resume-content__section.is-career-objective > div > dl > dd");
-        String 期望工作地点 = dl.get(0).text().trim();
-        String 期望月薪 = dl.get(1).text().trim();
-        String 目前状况 = dl.get(2).text().trim();
-        String 期望工作性质 = dl.get(3).text().trim();
-        String 期望从事职业 = dl.get(4).text().trim();
-        String 期望从事行业 = dl.get(5).text().trim();
+        if(dl.size()>0){
+            String 期望工作地点 = dl.get(0) == null ? "" : dl.get(0).text().trim();
+            String 期望月薪 = dl.get(1) == null ? "" : dl.get(1).text().trim();
+            String 目前状况 = dl.get(2) == null ? "" : dl.get(2).text().trim();
+            String 期望工作性质 = dl.get(3) == null ? "" : dl.get(3).text().trim();
+            String 期望从事职业 = dl.get(4) == null ? "" : dl.get(4).text().trim();
+            String 期望从事行业 = dl.get(5) == null ? "" : dl.get(5).text().trim();
 
-        System.out.println("\n期望工作地点：" + 期望工作地点  + "\n期望月薪:" + 期望月薪 + "\n目前状况："
-                + 目前状况 + "\n期望工作性质:" + 期望工作性质 + "\n期望从事职业:" + 期望从事职业 + "\n期望从事行业:" + 期望从事行业);
-
-        Elements elementsByClass1 = doc.getElementsByClass("resumeDetail > div:nth-child(5)");
-        String text5 = resumeDetail.select("div:nth-child(5)").text();
+            System.out.println("\n期望工作地点：" + 期望工作地点  + "\n期望月薪:" + 期望月薪 + "\n目前状况："
+                    + 目前状况 + "\n期望工作性质:" + 期望工作性质 + "\n期望从事职业:" + 期望从事职业 + "\n期望从事行业:" + 期望从事行业);
+        }
 
         ListIterator<Element> div = resumeDetail.select("div").listIterator();
 
