@@ -203,6 +203,14 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             /** 语言能力 **/
             if(next.attr("data-bind").equals("if: languageSkill().length")) {
                 System.out.println("------------------------------------------------语言能力------------------------------------------------");
+
+                //#resumeDetail > div:nth-child(12) > ul > li
+                Elements select = next.select("ul > li");
+                for(Element element : select){
+                    String 语言能力 = element.text();
+                    System.out.println("\n语言能力:" + 语言能力);
+                }
+
             }
 
 
