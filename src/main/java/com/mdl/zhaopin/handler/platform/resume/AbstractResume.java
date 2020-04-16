@@ -53,6 +53,12 @@ public abstract class AbstractResume implements Resume {
     /** 现住址 */
     private String address;
 
+    /** 是否结婚 **/
+    private String married;
+
+    /** 学历 **/
+    private String degree;
+
 
     @Override
     public String getName() {
@@ -178,5 +184,21 @@ public abstract class AbstractResume implements Resume {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getMarried() {
+        return married;
+    }
+
+    public void setMarried(String married) {
+        this.married = married;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
     }
 }
