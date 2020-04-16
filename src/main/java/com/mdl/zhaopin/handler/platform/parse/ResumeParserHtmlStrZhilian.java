@@ -2,7 +2,6 @@ package com.mdl.zhaopin.handler.platform.parse;
 
 import com.mdl.zhaopin.handler.platform.resume.Resume;
 import com.mdl.zhaopin.handler.platform.resume.ResumeZhilian;
-import com.mdl.zhaopin.utils.JsonTools;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -269,14 +268,13 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
 
     public static void main(String[] args) throws Exception {
-//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘_底文娟_人力资源专员-BP方向_中文_20200415_1586922516067.html";
 //        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-html.html";
         String filePath = "/Users/admin/Desktop/简历解析/智联招聘-李先生-插件.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserHtmlStrZhilian resumeParser = new ResumeParserHtmlStrZhilian();
         ResumeZhilian resume = (ResumeZhilian) resumeParser.parse(html);
-        System.out.println(JsonTools.obj2String(resume));
+//        System.out.println(JsonTools.obj2String(resume));
     }
 
 
