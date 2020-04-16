@@ -50,7 +50,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
         //简历主要核心部件
         Element elementsByClass = doc.getElementsByClass("resume-content__section").get(0);
 
-        System.out.println("------------------------------------------------基本信息------------------------------------------------");
+        System.out.println("\n------------------------------------------------基本信息------------------------------------------------");
 
         //名字
         String 名字 = elementsByClass.getElementsByClass("resume-content__candidate-header").select("span").text().trim();
@@ -96,7 +96,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
         String 期望从事行业 = dl.get(5).text().trim();
 
         System.out.println("\n期望工作地点：" + 期望工作地点  + "\n期望月薪:" + 期望月薪 + "\n目前状况："
-                + 目前状况 + "\n期望工作性质" + 期望工作性质 + "\n期望从事职业" + 期望从事职业 + "\n期望从事行业" + 期望从事行业);
+                + 目前状况 + "\n期望工作性质:" + 期望工作性质 + "\n期望从事职业:" + 期望从事职业 + "\n期望从事行业:" + 期望从事行业);
 
         Elements elementsByClass1 = doc.getElementsByClass("resumeDetail > div:nth-child(5)");
         String text5 = resumeDetail.select("div:nth-child(5)").text();
@@ -110,7 +110,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
             /** 教育经历 **/
             if(next.attr("data-bind").equals("if: educationExperience().length")){
-                System.out.println("------------------------------------------------教育经历------------------------------------------------");
+                System.out.println("\n------------------------------------------------教育经历------------------------------------------------");
                 //#resumeDetail > div:nth-child(3) > ul > li > p > span.timeline__time--wrapper
                 Elements select = next.select("ul > li");
                 for(Element element : select){
@@ -126,7 +126,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
             /** 工作经历 **/
             if(next.attr("data-bind").equals("if: workExperience().length")){
-                System.out.println("------------------------------------------------工作经历------------------------------------------------");
+                System.out.println("\n------------------------------------------------工作经历------------------------------------------------");
                 //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header
                 Elements select = next.select("ul > li");
                 for(Element element : select){
@@ -147,17 +147,17 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
             /** 项目经验 **/
             if(next.attr("data-bind").equals("if: projectExperience().length")) {
-                System.out.println("------------------------------------------------项目经验------------------------------------------------");
+                System.out.println("\n------------------------------------------------项目经验------------------------------------------------");
             }
 
             /** 专业技能 **/
             if(next.attr("data-bind").equals("if: professionalSkill().length")) {
-                System.out.println("------------------------------------------------专业技能------------------------------------------------");
+                System.out.println("\n------------------------------------------------专业技能------------------------------------------------");
             }
 
             /** 自我评价 **/
             if(next.attr("data-bind").equals("if: evaluate.content")) {
-                System.out.println("------------------------------------------------自我评价------------------------------------------------");
+                System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
                 //#resumeDetail > div:nth-child(7) > div
                 String 自我评价 = next.select("div").get(1).text();
                 System.out.println("\n自我评价" + 自我评价);
@@ -165,12 +165,12 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
             /** 培训经历 **/
             if(next.attr("data-bind").equals("if: trainingExperience().length")) {
-                System.out.println("------------------------------------------------培训经历------------------------------------------------");
+                System.out.println("\n------------------------------------------------培训经历------------------------------------------------");
             }
 
             /** 所获证书 **/
             if(next.attr("data-bind").equals("if: achieveCertificate().length")) {
-                System.out.println("------------------------------------------------所获证书------------------------------------------------");
+                System.out.println("\n------------------------------------------------所获证书------------------------------------------------");
 
                 //#resumeDetail > div:nth-child(9) > ul
                 Elements ul = next.select("ul > li");
@@ -184,7 +184,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
             /** 在校情况 **/
             if(next.attr("data-bind").equals("if: achieveScholarship().length || achieveAward().length || studyInfomation()")) {
-                System.out.println("------------------------------------------------在校情况------------------------------------------------");
+                System.out.println("\n------------------------------------------------在校情况------------------------------------------------");
 
                 //#resumeDetail > div:nth-child(10) > div.resume-content__section-body.resume-content--timeline.is-mt-10.is-mb-20 > dl > dd
                 Elements select = next.select("div.resume-content__section-body.resume-content--timeline.is-mt-10.is-mb-20");
@@ -196,13 +196,13 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
 
             /** 在校实践经验 **/
             if(next.attr("data-bind").equals("if: socialEvents().length")) {
-                System.out.println("-----------------------------------------------在校实践经验----------------------------------------------");
+                System.out.println("\n-----------------------------------------------在校实践经验----------------------------------------------");
             }
 
 
             /** 语言能力 **/
             if(next.attr("data-bind").equals("if: languageSkill().length")) {
-                System.out.println("------------------------------------------------语言能力------------------------------------------------");
+                System.out.println("\n------------------------------------------------语言能力------------------------------------------------");
 
                 //#resumeDetail > div:nth-child(12) > ul > li
                 Elements select = next.select("ul > li");
