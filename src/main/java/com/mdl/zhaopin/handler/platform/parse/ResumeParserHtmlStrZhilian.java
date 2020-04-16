@@ -148,11 +148,39 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             /** 项目经验 **/
             if(next.attr("data-bind").equals("if: projectExperience().length")) {
                 System.out.println("\n------------------------------------------------项目经验------------------------------------------------");
+
+                //#resumeDetail > div:nth-child(4) > ul
+                Elements ul = next.select("ul > li");
+                for(Element element : ul){
+                    //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p > span:nth-child(2)
+                    String 项目名字 = element.select("p > span:nth-child(2)").text();
+                    //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p > span.timeline__time-range
+                    String 项目时长 = element.select("p > span.timeline__time-range").text();
+                    //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > dl > dd
+                    String 项目描述 = element.select("dl > dd").text();
+
+                    System.out.println("\n项目名字:" + 项目名字 + "\n项目时长:" + 项目时长 + "\n项目描述:" + 项目描述);
+                }
+
             }
 
             /** 专业技能 **/
             if(next.attr("data-bind").equals("if: professionalSkill().length")) {
                 System.out.println("\n------------------------------------------------专业技能------------------------------------------------");
+
+                //#resumeDetail > div:nth-child(5) > ul
+                Elements select = next.select("ul > li");
+                for(Element element : select){
+                    //#resumeDetail > div:nth-child(5) > ul > li:nth-child(1) > p.is-weight-bold
+                    String 技能名称 = element.select("p.is-weight-bold").text();
+                    //#resumeDetail > div:nth-child(5) > ul > li:nth-child(1) > p.resume-content__labels--sub > span:nth-child(1)
+                    String 技能掌握程度 = element.select("p.resume-content__labels--sub > span:nth-child(1)").text();
+                    //#resumeDetail > div:nth-child(5) > ul > li:nth-child(1) > p.resume-content__labels--sub > span:nth-child(2)
+                    String 技能掌握时长 = element.select("p.resume-content__labels--sub > span:nth-child(2)").text();
+
+                    System.out.println("\n技能名称:" + 技能名称 + "\n技能掌握程度:" + 技能掌握程度 + "\n技能掌握时长:" + 技能掌握时长);
+                }
+
             }
 
             /** 自我评价 **/
@@ -160,7 +188,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
                 System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
                 //#resumeDetail > div:nth-child(7) > div
                 String 自我评价 = next.select("div").get(1).text();
-                System.out.println("\n自我评价" + 自我评价);
+                System.out.println("\n自我评价:" + 自我评价);
             }
 
             /** 培训经历 **/
