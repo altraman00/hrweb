@@ -185,6 +185,13 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
             /** 在校情况 **/
             if(next.attr("data-bind").equals("if: achieveScholarship().length || achieveAward().length || studyInfomation()")) {
                 System.out.println("------------------------------------------------在校情况------------------------------------------------");
+
+                //#resumeDetail > div:nth-child(10) > div.resume-content__section-body.resume-content--timeline.is-mt-10.is-mb-20 > dl > dd
+                Elements select = next.select("div.resume-content__section-body.resume-content--timeline.is-mt-10.is-mb-20");
+                for(Element element : select){
+                    String 在校情况 = element.text();
+                    System.out.println("\n在校情况:" + 在校情况);
+                }
             }
 
             /** 在校实践经验 **/
