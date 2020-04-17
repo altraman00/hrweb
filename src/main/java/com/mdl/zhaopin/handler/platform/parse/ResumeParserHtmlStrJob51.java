@@ -116,22 +116,34 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
             Element table1_td1_trs = table1_tds.get(1);
             if(table1_td1_trs != null){
                 Elements table1_td1_trs_tds = table1_td1_trs.select("table > tbody > tr");
-
                 String 专业 = table1_td1_trs_tds.get(1).select("td").get(1).text().trim();
                 String 学校 = table1_td1_trs_tds.get(2).select("td").get(1).text().trim();
                 String 学历 = table1_td1_trs_tds.get(3).select("td").get(1).text().trim();
-
                 System.out.println("\n专业：" + 专业 + "\n学校:" + 学校 + "\n学历:" + 学历);
-
             }
-
-
-
         }
 
         /** 第3层，政治面貌等相关的table **/
         Element table2 = tables.get(2);
         if(table2 != null){
+
+            //#divInfo > td > table:nth-child(1) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1)
+            Elements divInfo_tds = table2.getElementById("divInfo").select("td > table > tbody > tr > td.tba > table > tbody > tr > td.tb2 td.txt2");
+            String 户口 = divInfo_tds.get(0).text();
+            String 身高 = divInfo_tds.get(1).text();
+            String 婚姻状况 = divInfo_tds.get(2).text();
+            String 家庭住址 = divInfo_tds.get(3).text();
+            String 政治面貌 = divInfo_tds.get(4).text();
+            String 期望薪资 = divInfo_tds.get(5).text();
+            String 地点 = divInfo_tds.get(6).text();
+            String 职位 = divInfo_tds.get(7).text();
+            String 到岗时间 = divInfo_tds.get(8).text();
+            String 工作类型 = divInfo_tds.get(9).text();
+
+            System.out.println("\n户口：" + 户口 + "\n身高:" + 身高 + "\n婚姻状况:" + 婚姻状况 +
+                    "\n家庭住址：" + 家庭住址 + "\n政治面貌:" + 政治面貌 + "\n期望薪资:" + 期望薪资 +
+                    "\n地点：" + 地点 + "\n职位:" + 职位 + "\n到岗时间:" + 到岗时间 + "\n工作类型:" + 工作类型);
+
 
         }
 
