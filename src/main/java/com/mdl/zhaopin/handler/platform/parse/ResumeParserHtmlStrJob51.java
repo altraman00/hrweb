@@ -177,6 +177,24 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
 
             }
 
+            System.out.println("\n------------------------------------------------教育经历------------------------------------------------");
+            //#divInfo > td > table:nth-child(4)
+
+            //#divInfo > td > table:nth-child(4) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1)
+            Elements divInfo_tds_3 = table2.getElementById("divInfo").select("td > table:nth-child(4)");
+            Elements divInfo_edu = divInfo_tds_3.select("tbody > tr:nth-child(2)");
+            Elements select = divInfo_edu.select("td > table > tbody > tr > td.p15");
+
+            for(Element element : select){
+                Elements deu = element.select("td[valign] , td.phd");
+                String 在校时间 = deu.get(0).text().trim();
+                String 学校名字 = deu.get(1).text().trim();
+                String 学历 = deu.get(2).text().split("\\|")[0];
+                String 在校专业 = deu.get(2).text().split("\\|")[1];
+
+                System.out.println("\n在校时间：" + 在校时间 + "\n学校名字:" + 学校名字 + "\n学历:" + 学历 + "\n在校专业：" + 在校专业);
+            }
+
 
         }
 
