@@ -45,7 +45,6 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
 
         System.out.println("\n------------------------------------------------基本信息------------------------------------------------");
 
-
         //body > table > tbody > tr > td > table.bottom_border
         /** 最外层的所有tables **/
         Elements tables = doc.select("body > table > tbody > tr > td > table");
@@ -76,9 +75,9 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
                 Element table0_tbody0_tr0_td1_tr1 = table0_tbody0_tr0_td1_trs.get(1);
                 //body > table > tbody > tr > td > table.bottom_border > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td:nth-child(2)
                 Elements table0_tbody0_tr1_td = table0_tbody0_tr0_td1_tr1.select("td > table > tbody > tr > td");
-                String 在职状况 = table0_tbody0_tr1_td.get(1).text();
-                String 手机号 = table0_tbody0_tr1_td.get(3).text();
-                String 邮箱 = table0_tbody0_tr1_td.get(5).text();
+                String 在职状况 = table0_tbody0_tr1_td.get(1).text().trim();
+                String 手机号 = table0_tbody0_tr1_td.get(3).text().trim();
+                String 邮箱 = table0_tbody0_tr1_td.get(5).text().trim();
                 System.out.println("在职状况：" + 在职状况 + "\n手机号：" + 手机号 + "\n邮箱：" + 邮箱);
 
                 //body > table > tbody > tr > td > table.bottom_border > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(3)
@@ -86,7 +85,7 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
                 /** 男 41岁（1978年7月1日） 现居住 北京 20年工作经验 **/
                 Element table0_tbody0_tr0_td1_tr2 = table0_tbody0_tr0_td1_trs.get(3);
                 Elements table0_tbody0_tr0_td1_tr2_tds = table0_tbody0_tr0_td1_tr2.select("td");
-                String text = table0_tbody0_tr0_td1_tr2_tds.text();
+                String text = table0_tbody0_tr0_td1_tr2_tds.text().trim();
                 String[] split = text.split("\\|");
                 String 性别 = split[0].trim();
                 String 年龄 = split[1].trim();
@@ -98,6 +97,7 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
 
         /** 第2层，基本信息学历，学校等相关的table **/
         Element table1 = tables.get(1);
+        System.out.println("\n------------------------------------------------个人信息------------------------------------------------");
         if(table1 != null){
             /** table1最外层 **/
             //body > table > tbody > tr > td > table.box2 > tbody > tr > td > table > tbody > tr > td:nth-child(1)
@@ -124,28 +124,65 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
         }
 
         /** 第3层，政治面貌等相关的table **/
+        System.out.println("\n------------------------------------------------求职意向------------------------------------------------");
         Element table2 = tables.get(2);
         if(table2 != null){
-
             //#divInfo > td > table:nth-child(1) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1)
-            Elements divInfo_tds = table2.getElementById("divInfo").select("td > table > tbody > tr > td.tba > table > tbody > tr > td.tb2 td.txt2");
-            String 户口 = divInfo_tds.get(0).text();
-            String 身高 = divInfo_tds.get(1).text();
-            String 婚姻状况 = divInfo_tds.get(2).text();
-            String 家庭住址 = divInfo_tds.get(3).text();
-            String 政治面貌 = divInfo_tds.get(4).text();
-            String 期望薪资 = divInfo_tds.get(5).text();
-            String 地点 = divInfo_tds.get(6).text();
-            String 职位 = divInfo_tds.get(7).text();
-            String 到岗时间 = divInfo_tds.get(8).text();
-            String 工作类型 = divInfo_tds.get(9).text();
+            Elements divInfo_tds = table2.getElementById("divInfo").select("td > table > tbody > tr > td.tba > table > tbody > tr");
+            Elements divInfo_tds_0 = divInfo_tds.select("td.tb2 td.txt2");
+            String 户口 = divInfo_tds_0.get(0).text().trim();
+            String 身高 = divInfo_tds_0.get(1).text().trim();
+            String 婚姻状况 = divInfo_tds_0.get(2).text().trim();
+            String 家庭住址 = divInfo_tds_0.get(3).text().trim();
+            String 政治面貌 = divInfo_tds_0.get(4).text().trim();
+            String 期望薪资 = divInfo_tds_0.get(5).text().trim();
+            String 地点 = divInfo_tds_0.get(6).text().trim();
+            String 职位 = divInfo_tds_0.get(7).text().trim();
+            String 到岗时间 = divInfo_tds_0.get(8).text().trim();
+            String 工作类型 = divInfo_tds_0.get(9).text().trim();
 
             System.out.println("\n户口：" + 户口 + "\n身高:" + 身高 + "\n婚姻状况:" + 婚姻状况 +
                     "\n家庭住址：" + 家庭住址 + "\n政治面貌:" + 政治面貌 + "\n期望薪资:" + 期望薪资 +
                     "\n地点：" + 地点 + "\n职位:" + 职位 + "\n到岗时间:" + 到岗时间 + "\n工作类型:" + 工作类型);
 
 
+            System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
+
+            Elements divInfo_tds_1 = divInfo_tds.select("td.tb1 td.txt1");
+            String 自我评价 = divInfo_tds_1.get(1).text().trim();
+            System.out.println("\n自我评价：" + 自我评价);
+
+
+            System.out.println("\n------------------------------------------------工作经验------------------------------------------------");
+            //#divInfo > td > table:nth-child(3)
+            Elements divInfo_tds_2 = table2.getElementById("divInfo").select("td > table:nth-child(3)");
+
+            //#divInfo > td > table:nth-child(3) > tbody > tr:nth-child(2)
+            Elements divInfo_work = divInfo_tds_2.select("tbody > tr:nth-child(2)");
+
+            //#divInfo > td > table:nth-child(3) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1)
+            Elements divInfo_worx_exps = divInfo_work.select("td > table > tbody > tr > td.p15");
+
+            for(Element elements : divInfo_worx_exps){
+                //#divInfo > td > table:nth-child(3) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td.time
+
+                Elements select = elements.select(" td > table > tbody > tr > td[valign] , td.rtbox");
+                String 在职时间 = select.get(0).text().trim();
+                String 公司名字 = select.get(1).text().trim();
+                String 部门 = select.get(4).text().trim();
+                String 岗位 = select.get(5).text().trim();
+                String 工作描述 = select.get(7).text().trim();
+
+                System.out.println("\n在职时间：" + 在职时间 + "\n公司名字:" + 公司名字 + "\n部门:" + 部门 + "\n岗位：" + 岗位 + "\n工作描述:" + 工作描述);
+
+            }
+
+
         }
+
+
+
+
 
         return resume;
     }
