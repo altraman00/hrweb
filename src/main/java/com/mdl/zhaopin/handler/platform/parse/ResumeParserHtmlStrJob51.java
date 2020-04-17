@@ -101,12 +101,8 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
         if(table1 != null){
             /** table1最外层 **/
             //body > table > tbody > tr > td > table.box2 > tbody > tr > td > table > tbody > tr > td:nth-child(1)
-            Elements table1_tds = table1.select("tbody > tr > td > table > tbody > tr > td");
-
-//            Elements table1_tds = table1.select("tbody > tr").get(0)
-//                    .select("td").get(0)
-//                    .select("table > tbody > tr").get(0)
-//                    .select("td");
+            /** 注意，最后面的选择器一定要用tr > td.tb2 ，不能是tr > td，否则会将tr下的所有td全部查出来 **/
+            Elements table1_tds = table1.select("tbody > tr > td > table > tbody > tr > td.tb2");
 
             Element table1_td0_trs = table1_tds.get(0);
             if(table1_td0_trs != null){
