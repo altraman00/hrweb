@@ -83,10 +83,17 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
                 System.out.println("在职状况：" + 在职状况 + "\n手机号：" + 手机号 + "\n邮箱：" + 邮箱);
 
                 //body > table > tbody > tr > td > table.bottom_border > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(3)
+                //body > table > tbody > tr > td > table.bottom_border > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(3)
                 /** 男 41岁（1978年7月1日） 现居住 北京 20年工作经验 **/
-                Element table0_tbody0_tr0_td1_tr2 = table0_tbody0_tr0_td1_trs.get(2);
-                String text = table0_tbody0_tr0_td1_tr2.text();
-                System.out.println("\ntext" + text);
+                Element table0_tbody0_tr0_td1_tr2 = table0_tbody0_tr0_td1_trs.get(3);
+                Elements table0_tbody0_tr0_td1_tr2_tds = table0_tbody0_tr0_td1_tr2.select("td");
+                String text = table0_tbody0_tr0_td1_tr2_tds.text();
+                String[] split = text.split("\\|");
+                String 性别 = split[0].trim();
+                String 年龄 = split[1].trim();
+                String 住址 = split[2].replace("现居住","").trim();
+                String 工作经验 = split[3].trim();
+                System.out.println("\n性别：" +性别 + "\n年龄：" + 年龄 + "\n住址：" + 住址 + "\n工作经验：" + 工作经验);
 
             }
         }
