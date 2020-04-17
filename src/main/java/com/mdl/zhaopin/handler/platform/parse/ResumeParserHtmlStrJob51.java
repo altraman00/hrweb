@@ -51,11 +51,10 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
         Elements tables = doc.select("body > table > tbody > tr > td > table");
 
         //body > table > tbody > tr > td > table.bottom_border > tbody
-        /** 第一层的基本信息相关的table **/
+        /** 第1层，基本信息姓名性别相关的table **/
         Element table0 = tables.get(0);
 
         if (table0 != null) {
-
             //body > table > tbody > tr > td > table.bottom_border > tbody > tr > tds
             Elements table0_tbody0_tr0_tds = table0.select("tbody > tr > td");
 
@@ -94,10 +93,46 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
                 String 住址 = split[2].replace("现居住","").trim();
                 String 工作经验 = split[3].trim();
                 System.out.println("\n性别：" +性别 + "\n年龄：" + 年龄 + "\n住址：" + 住址 + "\n工作经验：" + 工作经验);
-
             }
         }
 
+        /** 第2层，基本信息学历，学校等相关的table **/
+        Element table1 = tables.get(1);
+        if(table1 != null){
+            /** table1最外层 **/
+            //body > table > tbody > tr > td > table.box2 > tbody > tr > td > table > tbody > tr > td:nth-child(1)
+            Elements table1_tds = table1.select("tbody > tr > td > table > tbody > tr > td");
+
+            Element table1_td0_trs = table1_tds.get(0);
+            if(table1_td0_trs != null){
+                Elements table1_td0_trs_tds = table1_td0_trs.select("table > tbody > tr");
+                String 工作年限 = table1_td0_trs_tds.get(0).select("td > span").text().trim();
+                String 职位 = table1_td0_trs_tds.get(1).select("td").get(1).text().trim();
+                String 行业 = table1_td0_trs_tds.get(2).select("td").get(1).text().trim();
+                System.out.println("\n最近工作年限：" + 工作年限 + "\n职位:" + 职位 + "\n行业:" + 行业);
+            }
+
+            Element table1_td1_trs = table1_tds.get(1);
+            if(table1_td1_trs != null){
+                Elements table1_td1_trs_tds = table1_td1_trs.select("table > tbody > tr");
+
+                String 专业 = table1_td1_trs_tds.get(1).select("td").get(1).text().trim();
+                String 学校 = table1_td1_trs_tds.get(2).select("td").get(1).text().trim();
+                String 学历 = table1_td1_trs_tds.get(3).select("td").get(1).text().trim();
+
+                System.out.println("\n专业：" + 专业 + "\n学校:" + 学校 + "\n学历:" + 学历);
+
+            }
+
+
+
+        }
+
+        /** 第3层，政治面貌等相关的table **/
+        Element table2 = tables.get(2);
+        if(table2 != null){
+
+        }
 
         return resume;
     }
