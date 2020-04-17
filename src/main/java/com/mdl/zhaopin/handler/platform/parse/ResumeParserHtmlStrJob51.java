@@ -103,6 +103,11 @@ public class ResumeParserHtmlStrJob51 extends AbstractResumeParser implements Re
             //body > table > tbody > tr > td > table.box2 > tbody > tr > td > table > tbody > tr > td:nth-child(1)
             Elements table1_tds = table1.select("tbody > tr > td > table > tbody > tr > td");
 
+//            Elements table1_tds = table1.select("tbody > tr").get(0)
+//                    .select("td").get(0)
+//                    .select("table > tbody > tr").get(0)
+//                    .select("td");
+
             Element table1_td0_trs = table1_tds.get(0);
             if(table1_td0_trs != null){
                 Elements table1_td0_trs_tds = table1_td0_trs.select("table > tbody > tr");
