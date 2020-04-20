@@ -321,10 +321,10 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
         Elements select = document.select("body > ul > li");
         for (Element element : select) {
             String 上学开始时间 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
-            String 上学结束时间 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
-            String 学校 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
-            String 专业 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
-            System.out.println("\n上学开始时间:" + 上学开始时间 + "\n上学结束时间:" + 上学结束时间 + "\n学校：" + 学校 + "\n专业" + 专业);
+            String 上学结束时间 = element.select("[data-bind = text: data.eduDate.endDate]").text();
+            String 学校 = element.select("[data-bind = textHighlight: {originalValue: data.schoolName, highlightMark: data.schoolNameHighlightWords}]").text();
+            String 专业 = element.select("[data-bind = textHighlight: {originalValue: data.majorName, highlightMark: data.majorNameHighlightWords}]").text();
+            System.out.println("\n上学开始时间：" + 上学开始时间 + "\n上学结束时间：" + 上学结束时间 + "\n学校：" + 学校 + "\n专业：" + 专业);
         }
     }
 
