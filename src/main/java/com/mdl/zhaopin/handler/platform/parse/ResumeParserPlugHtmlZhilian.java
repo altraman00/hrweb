@@ -2,7 +2,6 @@ package com.mdl.zhaopin.handler.platform.parse;
 
 import com.mdl.zhaopin.handler.platform.resume.Resume;
 import com.mdl.zhaopin.handler.platform.resume.ResumeZhilian;
-import com.mdl.zhaopin.utils.JsonTools;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,10 +37,10 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 
         //1、获取所有模块的html
         Map<String, String> resumeModuleMap = getResumeMoudelMap(htmlStr);
-        System.out.println("moduleMap:" + JsonTools.obj2String(resumeModuleMap));
+//        System.out.println("moduleMap:" + JsonTools.obj2String(resumeModuleMap));
 
-//        //2、各个模块进行解析获取数据
-//        parseResumeMap(resumeMap);
+        //2、各个模块进行解析获取数据
+        parseResumeMap(resumeModuleMap);
 
         return resume;
     }
@@ -109,64 +108,51 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 
     /**
      * 解析简历map
-     * @param next
+     * @param map
      */
-//    private void parseResumeMap(Element next) {
-//
-//        System.out.println("\n------------------------------------------------基本信息------------------------------------------------");
-//        getSeekerBaseInfo(resume, doc, elementsByClass);
-//
-//
-//        System.out.println("\n------------------------------------------------求职意向------------------------------------------------");
-//        getJobHuntBaseInfo(resumeDetail);
-//
-//        System.out.println("\n------------------------------------------------教育经历------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: educationExperience().length")){
-//            getEduBaseInfo(next);
-//        }
-//
-//        System.out.println("\n------------------------------------------------工作经历------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: workExperience().length")){
-//            getWorkExpBaseInfo(next);
-//        }
-//
-//        System.out.println("\n------------------------------------------------项目经验------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: projectExperience().length")) {
-//            getProjectExpBaseInfo(next);
-//
-//        }
-//
+    private void parseResumeMap(Map<String,String> map) {
+
+        System.out.println("\n------------------------------------------------基本信息------------------------------------------------");
+        String seekerBaseInfoHtml = map.get("基本信息");
+        getSeekerBaseInfo(seekerBaseInfoHtml);
+
+
+        System.out.println("\n------------------------------------------------求职意向------------------------------------------------");
+        String JobHuntBaseInfoHtml = map.get("求职意向");
+        getJobHuntBaseInfo(JobHuntBaseInfoHtml);
+
+        System.out.println("\n------------------------------------------------教育经历------------------------------------------------");
+        String eduBaseInfoHtml = map.get("教育经历");
+        getEduBaseInfo(eduBaseInfoHtml);
+
+        System.out.println("\n------------------------------------------------工作经历------------------------------------------------");
+        String workExpBaseInfoHtml = map.get("工作经历");
+        getWorkExpBaseInfo(workExpBaseInfoHtml);
+
+        System.out.println("\n------------------------------------------------项目经验------------------------------------------------");
+        String projectExpBaseInfoHtml = map.get("项目经验");
+        getProjectExpBaseInfo(projectExpBaseInfoHtml);
+
 //        System.out.println("\n------------------------------------------------专业技能------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: professionalSkill().length")) {
-//            getSkillBaseInfo(next);
-//        }
-//
-//        System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: evaluate.content")) {
-//            getSelfEvalBaseInfo(next);
-//        }
-//
-//        System.out.println("\n------------------------------------------------培训经历------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: trainingExperience().length")) {
-//            getTrainBaseInfo(next);
-//        }
-//
+//        String skillBaseInfoHtml = map.get("专业技能");
+//        getSkillBaseInfo(skillBaseInfoHtml);
+
+        System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
+        String selfEvalBaseInfoHtml = map.get("自我评价");
+        getSelfEvalBaseInfo(selfEvalBaseInfoHtml);
+
+        System.out.println("\n------------------------------------------------培训经历------------------------------------------------");
+        String trainBaseInfoHtml = map.get("培训经历");
+        getTrainBaseInfo(trainBaseInfoHtml);
+
 //        System.out.println("\n------------------------------------------------所获证书------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: achieveCertificate().length")) {
-//            getCertificateBaseInfo(next);
-//
-//        }
-//
-//        System.out.println("\n------------------------------------------------在校情况------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: achieveScholarship().length || achieveAward().length || studyInfomation()")) {
-//            getUniversityBaseInfo(next);
-//        }
-//
+//        String certificateBaseInfoHtml = map.get("所获证书");
+//        getCertificateBaseInfo(certificateBaseInfoHtml);
+
 //        System.out.println("\n------------------------------------------------语言能力------------------------------------------------");
-//        if(next.attr("data-bind").equals("if: languageSkill().length")) {
-//            getLanguageBaseInfo(next);
-//        }
-//    }
+//        String languageBaseInfoHtml = map.get("语言能力");
+//        getLanguageBaseInfo(languageBaseInfoHtml);
+    }
 
 
 //    /**
@@ -385,12 +371,12 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 
 
     public static void main(String[] args) throws Exception {
-////        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-html.html";
-//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-任女士-插件.html";
-//        File file = new File(filePath);
-//        String html = FileUtils.readFileToString(file, "UTF-8");
-//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-//        ResumeZhilian resume = (ResumeZhilian) resumeParser.parse(html);
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-html.html";
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-任女士-插件.html";
+        File file = new File(filePath);
+        String html = FileUtils.readFileToString(file, "UTF-8");
+        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+        ResumeZhilian resume = (ResumeZhilian) resumeParser.parse(html);
 
 
 //        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/基本信息.html";
@@ -442,11 +428,11 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 //        resumeParser.getTrainBaseInfo(html);
 
 
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/培训经历.html";
-        File file = new File(filePath);
-        String html = FileUtils.readFileToString(file, "UTF-8");
-        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-        resumeParser.getTrainBaseInfo(html);
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/培训经历.html";
+//        File file = new File(filePath);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+//        resumeParser.getTrainBaseInfo(html);
 
 
     }
