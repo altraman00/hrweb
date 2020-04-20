@@ -49,8 +49,8 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
         Map<String, String> moduleMap = getResumeMoudelMap(resumeHtml);
         System.out.println("moduleMap:" + JsonTools.obj2String(moduleMap));
 
-        //2、各个模块进行解析获取数据
-        parseResumeMap(moduleMap);
+//        //2、各个模块进行解析获取数据
+//        parseResumeMap(moduleMap);
 
         return resume;
     }
@@ -74,7 +74,7 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
         if (tables != null) {
             //body > table > tbody > tr > td > table.bottom_border > tbody
             /** 第1层，基本信息姓名性别相关的table **/
-            System.out.println("\n------------------------------------------------基本信息------------------------------------------------");
+            //------------------------------------------------基本信息------------------------------------------------
             Element table0 = tables.get(0);
             moduleMap.put("基本信息", table0.html());
 
@@ -88,29 +88,22 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
             /** 第3层，政治面貌等相关的table **/
             Element table2 = tables.get(2);
             if (table2 != null) {
-                //#divInfo > td > table:nth-child(1) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1)
-                Elements divInfo_tds = table2.getElementById("divInfo").select("td > table > tbody > tr > td.tba > table > tbody > tr");
-
                 //------------------------------------------------求职意向------------------------------------------------
-                moduleMap.put("求职意向", divInfo_tds.html());
-
-
-                //------------------------------------------------自我评价------------------------------------------------
-                Elements divInfo_tds_1 = divInfo_tds.select("td.tb1 td.txt1");
-                moduleMap.put("自我评价", divInfo_tds_1.html());
+                //#divInfo > td > table:nth-child(2)
+                Elements 求职意向_elements = table2.getElementById("divInfo").select("td > table:nth-child(2)");
+                moduleMap.put("求职意向", 求职意向_elements.html());
 
 
                 //------------------------------------------------工作经验------------------------------------------------
                 //#divInfo > td > table:nth-child(3)
-                Elements divInfo_tds_2 = table2.getElementById("divInfo").select("td > table:nth-child(3)");
-                moduleMap.put("工作经验", divInfo_tds_2.html());
+                Elements 工作经验_elements = table2.getElementById("divInfo").select("td > table:nth-child(3)");
+                moduleMap.put("工作经验", 工作经验_elements.html());
 
 
                 //------------------------------------------------教育经历------------------------------------------------
                 //#divInfo > td > table:nth-child(4)
-                //#divInfo > td > table:nth-child(4) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1)
-                Elements divInfo_tds_3 = table2.getElementById("divInfo").select("td > table:nth-child(4)");
-                moduleMap.put("教育经历", divInfo_tds_3.html());
+                Elements 教育经历_elements = table2.getElementById("divInfo").select("td > table:nth-child(4)");
+                moduleMap.put("教育经历", 教育经历_elements.html());
 
             }
         }
@@ -348,11 +341,11 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
 
     public static void main(String[] args) throws Exception {
         String filePath = "/Users/admin/Desktop/简历解析/51job-插件-2.html";
+//        String filePath = "/Users/admin/Desktop/简历解析/51job-插件-陈安安.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
         ResumeJob51 resume = (ResumeJob51) resumeParser.parse(html);
-//        System.out.println(JsonTools.obj2String(resume));
     }
 
 
