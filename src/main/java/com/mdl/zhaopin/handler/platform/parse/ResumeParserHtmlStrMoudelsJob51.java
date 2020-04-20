@@ -248,30 +248,30 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
 
         Element table1 = parse2Html(introBaseInfoHtml);
 
-        if (table1 != null) {
-            /** table1最外层 **/
-            //body > table > tbody > tr > td > table.box2 > tbody > tr > td > table > tbody > tr > td:nth-child(1)
-            /** 注意，最后面的选择器一定要用tr > td.tb2 ，不能是tr > td，否则会将tr下的所有td全部查出来 **/
-            Elements table1_tds = table1.select("tbody > tr > td > table > tbody > tr > td.tb2");
+        //body > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > td.keys
+        String[] keys = table1.select("body > table > tbody > tr > td.tb2 > table > tbody > tr > td.keys").text().split("：");
+        String[] values = table1.select("body > table > tbody > tr > td.tb2 > table > tbody > tr > td.txt1,td.txt2").text().split(" ");
 
-            Element table1_td0_trs = table1_tds.get(0);
-            if (table1_td0_trs != null) {
-                Elements table1_td0_trs_tds = table1_td0_trs.select("table > tbody > tr");
-                String 工作年限 = table1_td0_trs_tds.get(0).select("td > span").text().trim();
-                String 职位 = table1_td0_trs_tds.get(1).select("td").get(1).text().trim();
-                String 行业 = table1_td0_trs_tds.get(2).select("td").get(1).text().trim();
-                System.out.println("\n最近工作年限：" + 工作年限 + "\n职位:" + 职位 + "\n行业:" + 行业);
-            }
-
-            Element table1_td1_trs = table1_tds.get(1);
-            if (table1_td1_trs != null) {
-                Elements table1_td1_trs_tds = table1_td1_trs.select("table > tbody > tr");
-                String 专业 = table1_td1_trs_tds.get(1).select("td").get(1).text().trim();
-                String 学校 = table1_td1_trs_tds.get(2).select("td").get(1).text().trim();
-                String 学历 = table1_td1_trs_tds.get(3).select("td").get(1).text().trim();
-                System.out.println("\n专业：" + 专业 + "\n学校:" + 学校 + "\n学历:" + 学历);
+        Map<String, String> resMap = new HashMap<>();
+        for (int i = 0; i < keys.length; i++) {
+            String key = keys[i].replace("　", "").trim();
+            int valLength = values.length;
+            if (i <= valLength) {
+                String val = values[i].trim();
+                resMap.put(key, val);
             }
         }
+
+        String 公司 = resMap.get("公司");
+        String 职位 = resMap.get("职位");
+        String 行业 = resMap.get("行业");
+        System.out.println("\n公司：" + 公司 + "\n职位：" + 职位 + "\n行业：" + 行业);
+
+        String 专业 = resMap.get("专业");
+        String 学校 = resMap.get("学校");
+        String 学历 = resMap.get("学历/学位");
+        System.out.println("\n专业：" + 专业 + "\n学校：" + 学校 + "\n学历：" + 学历);
+
     }
 
 
@@ -333,12 +333,19 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
 //        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
 //        ResumeJob51 resume = (ResumeJob51) resumeParser.parse(html);
 
+//        /**基本信息**/
+//        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
+//        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/基本信息.html";
+//        File file = new File(nameBaseInfo);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        resumeParser.getNameBaseInfo(html);
 
+        /**基本信息**/
         ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
-        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/基本信息.html";
+        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/个人信息.html";
         File file = new File(nameBaseInfo);
         String html = FileUtils.readFileToString(file, "UTF-8");
-        resumeParser.getNameBaseInfo(html);
+        resumeParser.getIntroBaseInfo(html);
 
 
     }
