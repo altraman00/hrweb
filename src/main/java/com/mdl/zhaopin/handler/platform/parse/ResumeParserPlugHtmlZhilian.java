@@ -268,20 +268,17 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
     /**
      * 项目经验
      *
-     * @param next
+     * @param projectExpBaseInfoHtml
      */
-    private void getProjectExpBaseInfo(Element next) {
-        //#resumeDetail > div:nth-child(4) > ul
-        Elements ul = next.select("ul > li");
+    private void getProjectExpBaseInfo(String projectExpBaseInfoHtml) {
+        Document document = parse2Html(projectExpBaseInfoHtml);
+        Elements ul = document.select("ul > li");
         for (Element element : ul) {
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p > span:nth-child(2)
+            String 起止时间 = element.select("p > span").get(0).text();
             String 项目名字 = element.select("p > span:nth-child(2)").text();
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p > span.timeline__time-range
             String 项目时长 = element.select("p > span.timeline__time-range").text();
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > dl > dd
             String 项目描述 = element.select("dl > dd").text();
-
-            System.out.println("\n项目名字:" + 项目名字 + "\n项目时长:" + 项目时长 + "\n项目描述:" + 项目描述);
+            System.out.println("\n起止时间:" + 起止时间 + "\n项目名字:" + 项目名字 + "\n项目时长:" + 项目时长 + "\n项目描述:" + 项目描述);
         }
     }
 
@@ -461,11 +458,17 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 //        resumeParser.getEduBaseInfo(html);
 
 
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/工作经历.html";
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/工作经历.html";
+//        File file = new File(filePath);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+//        resumeParser.getWorkExpBaseInfo(html);
+
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/项目经验.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-        resumeParser.getWorkExpBaseInfo(html);
+        resumeParser.getProjectExpBaseInfo(html);
 
 
     }
