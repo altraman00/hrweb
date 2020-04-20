@@ -21,7 +21,7 @@ import java.util.Map;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implements ResumeStrParser {
+public class ResumeParserPlugHtmlJob51 extends AbstractResumeParser implements ResumeStrParser {
 
     @Override
     public String getName() {
@@ -349,11 +349,11 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
 
     public static void main(String[] args) throws Exception {
 
-        String filePath = "/Users/admin/Desktop/简历解析/51job-插件-2.html";
-//        String filePath = "/Users/admin/Desktop/简历解析/51job-插件-陈安安.html";
+//        String filePath = "/Users/admin/Desktop/简历解析/51job-插件-2.html";
+        String filePath = "/Users/admin/Desktop/简历解析/51job-插件-陈安安.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
-        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
+        ResumeParserPlugHtmlJob51 resumeParser = new ResumeParserPlugHtmlJob51();
         ResumeJob51 resume = (ResumeJob51) resumeParser.parse(html);
 
 
