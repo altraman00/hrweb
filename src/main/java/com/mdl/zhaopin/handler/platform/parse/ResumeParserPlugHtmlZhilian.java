@@ -289,25 +289,42 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
     /**
      * 工作经历
      *
-     * @param next
+     * @param workExpBaseInfoHtml
      */
-    private void getWorkExpBaseInfo(Element next) {
-        //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header
-        Elements select = next.select("ul > li");
-        for (Element element : select) {
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header > span.timeline__time--wrapper
-            String 起止时间 = element.select("p > span.timeline__time--wrapper").text();
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header > span:nth-child(2)
-            String 公司 = element.select("p > span:nth-child(2)").text();
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(2) > p.timeline__header > span.timeline__time-range
-            String 就职时长 = element.select("p > span:nth-child(3)").text();
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(2) > p.resume-content__skill-tags
-            String 技能标签 = element.select("p.resume-content__skill-tags").text();
-            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(2) > dl > dd
-            String 工作描述 = element.select("dl > dd").text();
+    private void getWorkExpBaseInfo(String workExpBaseInfoHtml) {
 
-            System.out.println("\n起止时间:" + 起止时间 + "\n公司:" + 公司 + "\n就职时长:" + 就职时长 + "\n技能标签:" + 技能标签 + "\n工作描述:" + 工作描述);
+        Document document = parse2Html(workExpBaseInfoHtml);
+
+        Elements select = document.select("body > ul > li");
+        for (Element element : select) {
+            String 开始时间 = element.select("[data-bind = text: data.workDate.beginDate]").text();
+            String 结束时间 = element.select("[data-bind = text: data.workDate.endDate]").text();
+            String 公司名字 = element.select("[data-bind = textHighlight: {originalValue: data.companyName, highlightMark: data.companyNameHighlightWords}]").text();
+            String 就职时长 = element.select("[data-bind = text: data.workDate.range]").text();
+            String 岗位 = element.select("[data-bind = textHighlight: {originalValue: data.jobTitle, highlightMark: data.jobTitleHighlightWords}]").text();
+            String 薪资 = element.select("[data-bind = text: data.salaray]").text();
+            String 工作描述 = element.select("[data-bind = textHighlight: {originalValue: data.workDescription, highlightMark: data.workDescriptionHighlightWords}]").text();
+
+            System.out.println("\n开始时间:" + 开始时间 + "\n结束时间:" + 结束时间 + "\n公司名字:" + 公司名字
+                    + "\n就职时长:" + 就职时长 + "\n岗位:" + 岗位 + "\n薪资:" + 薪资 + "\n工作描述:" + 工作描述);
         }
+
+//        //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header
+//        Elements select = next.select("ul > li");
+//        for (Element element : select) {
+//            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header > span.timeline__time--wrapper
+//            String 起止时间 = element.select("p > span.timeline__time--wrapper").text();
+//            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(1) > p.timeline__header > span:nth-child(2)
+//            String 公司 = element.select("p > span:nth-child(2)").text();
+//            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(2) > p.timeline__header > span.timeline__time-range
+//            String 就职时长 = element.select("p > span:nth-child(3)").text();
+//            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(2) > p.resume-content__skill-tags
+//            String 技能标签 = element.select("p.resume-content__skill-tags").text();
+//            //#resumeDetail > div:nth-child(4) > ul > li:nth-child(2) > dl > dd
+//            String 工作描述 = element.select("dl > dd").text();
+//
+//            System.out.println("\n起止时间:" + 起止时间 + "\n公司:" + 公司 + "\n就职时长:" + 就职时长 + "\n技能标签:" + 技能标签 + "\n工作描述:" + 工作描述);
+//        }
     }
 
 
@@ -437,11 +454,19 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 //        resumeParser.getJobHuntBaseInfo(html);
 
 
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/教育经历.html";
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/教育经历.html";
+//        File file = new File(filePath);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+//        resumeParser.getEduBaseInfo(html);
+
+
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/工作经历.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-        resumeParser.getEduBaseInfo(html);
+        resumeParser.getWorkExpBaseInfo(html);
+
 
     }
 
