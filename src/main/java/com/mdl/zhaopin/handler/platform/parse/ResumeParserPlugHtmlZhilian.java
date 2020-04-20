@@ -218,15 +218,13 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
     /**
      * 培训经历
      *
-     * @param next
+     * @param trainBaseInfoHtml
      */
-    private void getTrainBaseInfo(Element next) {
-        //#resumeDetail > div:nth-child(7) > ul
-        Elements ul = next.select("ul > li");
+    private void getTrainBaseInfo(String trainBaseInfoHtml) {
+        Document document = parse2Html(trainBaseInfoHtml);
+        Elements ul = document.select("ul > li");
         for (Element element : ul) {
-            //#resumeDetail > div:nth-child(7) > ul > li > p > span:nth-child(1)
             String 培训时间 = element.select("p > span").text();
-            //#resumeDetail > div:nth-child(7) > ul > li > dl > dd
             String 培训机构 = element.select("dl > dd").text();
             System.out.println("\n培训时间：" + 培训时间 + "\n培训机构：" + 培训机构);
         }
@@ -473,11 +471,18 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 //        resumeParser.getProjectExpBaseInfo(html);
 
 
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/自我评价.html";
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/自我评价.html";
+//        File file = new File(filePath);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+//        resumeParser.getSelfEvalBaseInfo(html);
+
+
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/培训经历.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-        resumeParser.getSelfEvalBaseInfo(html);
+        resumeParser.getTrainBaseInfo(html);
 
 
     }
