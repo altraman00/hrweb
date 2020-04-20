@@ -314,19 +314,17 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
     /**
      * 教育经历
      *
-     * @param next
+     * @param eduBaseInfoHtml
      */
-    private void getEduBaseInfo(Element next) {
-        //#resumeDetail > div:nth-child(3) > ul > li > p > span.timeline__time--wrapper
-        Elements select = next.select("ul > li");
+    private void getEduBaseInfo(String eduBaseInfoHtml) {
+        Document document = parse2Html(eduBaseInfoHtml);
+        Elements select = document.select("body > ul > li");
         for (Element element : select) {
-            String 上学时间 = element.select("p > span.timeline__time--wrapper").text();
-            //#resumeDetail > div:nth-child(3) > ul > li > p > span:nth-child(2)
-            String 学校 = element.select("p > span:nth-child(2)").text();
-            //#resumeDetail > div:nth-child(3) > ul > li > p > span:nth-child(3)
-            String 专业 = element.select("p > span:nth-child(3)").text();
-
-            System.out.println("\n上学时间:" + 上学时间 + "\n学校：" + 学校 + "\n专业" + 专业);
+            String 上学开始时间 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
+            String 上学结束时间 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
+            String 学校 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
+            String 专业 = element.select("[data-bind = text: data.eduDate.beginDate]").text();
+            System.out.println("\n上学开始时间:" + 上学开始时间 + "\n上学结束时间:" + 上学结束时间 + "\n学校：" + 学校 + "\n专业" + 专业);
         }
     }
 
@@ -431,11 +429,19 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 //        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
 //        resumeParser.getSeekerBaseInfo(html);
 
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/求职意向.html";
+
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/求职意向.html";
+//        File file = new File(filePath);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+//        resumeParser.getJobHuntBaseInfo(html);
+
+
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/教育经历.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-        resumeParser.getJobHuntBaseInfo(html);
+        resumeParser.getEduBaseInfo(html);
 
     }
 
