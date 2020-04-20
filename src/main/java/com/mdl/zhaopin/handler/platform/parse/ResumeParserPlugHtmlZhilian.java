@@ -236,11 +236,12 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
     /**
      * 自我评价
      *
-     * @param next
+     * @param selfEvalBaseInfoHtml
      */
-    private void getSelfEvalBaseInfo(Element next) {
-        //#resumeDetail > div:nth-child(7) > div
-        String 自我评价 = next.select("div").get(1).text();
+    private void getSelfEvalBaseInfo(String selfEvalBaseInfoHtml) {
+
+        Document document = parse2Html(selfEvalBaseInfoHtml);
+        String 自我评价 = document.select("div").text().trim();
         System.out.println("\n自我评价:" + 自我评价);
     }
 
@@ -464,11 +465,19 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 //        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
 //        resumeParser.getWorkExpBaseInfo(html);
 
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/项目经验.html";
+
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/项目经验.html";
+//        File file = new File(filePath);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+//        resumeParser.getProjectExpBaseInfo(html);
+
+
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/自我评价.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-        resumeParser.getProjectExpBaseInfo(html);
+        resumeParser.getSelfEvalBaseInfo(html);
 
 
     }
