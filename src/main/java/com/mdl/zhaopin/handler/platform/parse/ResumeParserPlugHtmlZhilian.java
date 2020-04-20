@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements ResumeStrParser{
+public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements ResumeStrParser{
 
     @Override
     public String getName() {
@@ -271,7 +271,7 @@ public class ResumeParserHtmlStrZhilian extends AbstractResumeParser implements 
         String filePath = "/Users/admin/Desktop/简历解析/智联招聘-任女士-插件.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
-        ResumeParserHtmlStrZhilian resumeParser = new ResumeParserHtmlStrZhilian();
+        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
         ResumeZhilian resume = (ResumeZhilian) resumeParser.parse(html);
 //        System.out.println(JsonTools.obj2String(resume));
     }

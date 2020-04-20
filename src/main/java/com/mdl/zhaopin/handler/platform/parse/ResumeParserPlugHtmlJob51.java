@@ -29,15 +29,6 @@ public class ResumeParserPlugHtmlJob51 extends AbstractResumeParser implements R
     }
 
     @Override
-    public boolean canParse(String file) {
-        if (file == null) {
-            return false;
-        } else {
-            return "".startsWith("51Job") && "".endsWith(".插件");
-        }
-    }
-
-    @Override
     public Resume parse(String resumeHtml) {
 
         ResumeJob51 resume = new ResumeJob51();

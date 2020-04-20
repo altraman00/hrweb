@@ -15,8 +15,6 @@ public interface ResumeStrParser {
 
     String getName();
 
-    boolean canParse(String resume);
-
     Resume parse(String resume) throws Exception;
 
 }
