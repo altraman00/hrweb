@@ -135,10 +135,6 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
         System.out.println("\n------------------------------------------------求职意向------------------------------------------------");
         getJobHuntBaseInfo(jobHuntBaseInfoHtml);
 
-//        String selfEvalBaseInfoHtml = map.get("自我评价");
-//        System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
-//        getSelfEvalBaseInfo(selfEvalBaseInfoHtml);
-
         String workExpBaseInfoHtml = map.get("工作经验");
         System.out.println("\n------------------------------------------------工作经验------------------------------------------------");
         getWorkExpBaseInfo(workExpBaseInfoHtml);
@@ -204,20 +200,6 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
     }
 
 
-//    /**
-//     * 4、自我评价
-//     *
-//     * @param selfEvalBaseInfoHtml
-//     */
-//    private void getSelfEvalBaseInfo(String selfEvalBaseInfoHtml) {
-//
-//        Element divInfo_tds_1 = parse2Html(selfEvalBaseInfoHtml);
-//
-//        String 自我评价 = divInfo_tds_1.text().trim();
-//        System.out.println("\n自我评价：" + 自我评价);
-//    }
-
-
     /**
      * 3、个人信息
      *
@@ -276,30 +258,17 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
             }
         }
 
+//        String 自我评价_key = divInfo.select("body > table > tbody > tr > td.tb1 table > tbody > tr > td.keys").text();
+        String 自我评价 = divInfo.select("body > table > tbody > tr > td.tb1 table > tbody > tr > td.txt1").text().trim();
+
         String 工作类型 = resMap.get("工作类型");
         String 到岗时间 = resMap.get("到岗时间");
         String 期望薪资 = resMap.get("期望薪资");
         String 地点 = resMap.get("地点");
         String 职能职位 = resMap.get("职能/职位");
-        System.out.println("\n工作类型：" + 工作类型 + "\n到岗时间：" + 到岗时间 + "\n期望薪资：" + 期望薪资 + "\n地点：" + 地点 + "\n职能职位：" + 职能职位);
+        System.out.println("\n工作类型：" + 工作类型 + "\n到岗时间：" + 到岗时间 + "\n期望薪资："
+                + 期望薪资 + "\n地点：" + 地点 + "\n职能职位：" + 职能职位+ "\n自我评价：" + 自我评价);
 
-
-
-//        Elements divInfo_tds_0 = divInfo_tds.select("td.tb2 td.txt2");
-//        String 户口 = divInfo_tds_0.get(0).text().trim();
-//        String 身高 = divInfo_tds_0.get(1).text().trim();
-//        String 婚姻状况 = divInfo_tds_0.get(2).text().trim();
-//        String 家庭住址 = divInfo_tds_0.get(3).text().trim();
-//        String 政治面貌 = divInfo_tds_0.get(4).text().trim();
-//        String 期望薪资 = divInfo_tds_0.get(5).text().trim();
-//        String 地点 = divInfo_tds_0.get(6).text().trim();
-//        String 职位 = divInfo_tds_0.get(7).text().trim();
-//        String 到岗时间 = divInfo_tds_0.get(8).text().trim();
-//        String 工作类型 = divInfo_tds_0.get(9).text().trim();
-//
-//        System.out.println("\n户口：" + 户口 + "\n身高:" + 身高 + "\n婚姻状况:" + 婚姻状况 +
-//                "\n家庭住址：" + 家庭住址 + "\n政治面貌:" + 政治面貌 + "\n期望薪资:" + 期望薪资 +
-//                "\n地点：" + 地点 + "\n职位:" + 职位 + "\n到岗时间:" + 到岗时间 + "\n工作类型:" + 工作类型);
     }
 
 
@@ -413,19 +382,19 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
 //        String html = FileUtils.readFileToString(file, "UTF-8");
 //        resumeParser.getDegreeBaseInfo(html);
 
-//        /**求职意向**/
-//        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
-//        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/求职意向.html";
-//        File file = new File(nameBaseInfo);
-//        String html = FileUtils.readFileToString(file, "UTF-8");
-//        resumeParser.getJobHuntBaseInfo(html);
-
-        /**个人信息**/
+        /**求职意向**/
         ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
-        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/个人信息.html";
+        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/求职意向.html";
         File file = new File(nameBaseInfo);
         String html = FileUtils.readFileToString(file, "UTF-8");
-        resumeParser.getSeekerBaseInfo(html);
+        resumeParser.getJobHuntBaseInfo(html);
+
+//        /**个人信息**/
+//        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
+//        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/个人信息.html";
+//        File file = new File(nameBaseInfo);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        resumeParser.getSeekerBaseInfo(html);
 
 
     }
