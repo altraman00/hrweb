@@ -89,8 +89,8 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
             if (table2 != null) {
                 //------------------------------------------------个人信息------------------------------------------------
                 //body > table > tbody > tr > td > table.box2 > tbody > tr > td > table > tbody > tr > td:nth-child(1) > table
-                Elements 学历信息_elements = table2.getElementById("divInfo").select("td > table:nth-child(2)");
-                moduleMap.put("学历信息", 学历信息_elements.html());
+                Elements 个人信息_elements = table2.getElementById("divInfo").select("td > table:nth-child(1).box");
+                moduleMap.put("个人信息", 个人信息_elements.html());
 
 
                 //------------------------------------------------求职意向------------------------------------------------
@@ -135,9 +135,9 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
         System.out.println("\n------------------------------------------------求职意向------------------------------------------------");
         getJobHuntBaseInfo(jobHuntBaseInfoHtml);
 
-        String selfEvalBaseInfoHtml = map.get("自我评价");
-        System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
-        getSelfEvalBaseInfo(selfEvalBaseInfoHtml);
+//        String selfEvalBaseInfoHtml = map.get("自我评价");
+//        System.out.println("\n------------------------------------------------自我评价------------------------------------------------");
+//        getSelfEvalBaseInfo(selfEvalBaseInfoHtml);
 
         String workExpBaseInfoHtml = map.get("工作经验");
         System.out.println("\n------------------------------------------------工作经验------------------------------------------------");
@@ -204,18 +204,55 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
     }
 
 
+//    /**
+//     * 4、自我评价
+//     *
+//     * @param selfEvalBaseInfoHtml
+//     */
+//    private void getSelfEvalBaseInfo(String selfEvalBaseInfoHtml) {
+//
+//        Element divInfo_tds_1 = parse2Html(selfEvalBaseInfoHtml);
+//
+//        String 自我评价 = divInfo_tds_1.text().trim();
+//        System.out.println("\n自我评价：" + 自我评价);
+//    }
+
+
     /**
-     * 4、自我评价
+     * 3、个人信息
      *
-     * @param selfEvalBaseInfoHtml
+     * @param seekerBaseInfoHtml
      */
-    private void getSelfEvalBaseInfo(String selfEvalBaseInfoHtml) {
+    private void getSeekerBaseInfo(String seekerBaseInfoHtml) {
 
-        Element divInfo_tds_1 = parse2Html(selfEvalBaseInfoHtml);
+        Element divInfo = parse2Html(seekerBaseInfoHtml);
 
-        String 自我评价 = divInfo_tds_1.text().trim();
-        System.out.println("\n自我评价：" + 自我评价);
+        //body > table > tbody > tr:nth-child(1) > td > table > tbody > tr
+        String[] keys = divInfo.select("body > table > tbody > tr > td.tb2 > table > tbody > tr > td.keys").text().split("：");
+        String[] values = divInfo.select("body > table > tbody > tr > td.tb2 > table > tbody > tr > td.txt2").text().split(" ");
+
+        Map<String, String> resMap = new HashMap<>();
+        for (int i = 0; i < keys.length; i++) {
+            String key = keys[i].replace("　", "").trim();
+            int valLength = values.length;
+            if (i <= valLength) {
+                String val = values[i].trim();
+                resMap.put(key, val);
+            }
+        }
+
+//        System.out.println(JsonTools.obj2String(resMap));
+
+        String 户口 = resMap.get("户口/国籍");
+        String 政治面貌 = resMap.get("政治面貌");
+        String 家庭地址 = resMap.get("家庭地址");
+        String 身高 = resMap.get("身高");
+        String 婚姻状况 = resMap.get("婚姻状况");
+        String 职能职位 = resMap.get("职能/职位");
+
+        System.out.println("\n户口：" + 户口 + "\n身高:" + 身高 + "\n婚姻状况:" + 婚姻状况 + "\n政治面貌:" + 政治面貌 + "\n家庭地址:" + 家庭地址 + "\n职能职位:" + 职能职位);
     }
+
 
     /**
      * 3、求职意向
@@ -376,12 +413,19 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
 //        String html = FileUtils.readFileToString(file, "UTF-8");
 //        resumeParser.getDegreeBaseInfo(html);
 
-        /**求职意向**/
+//        /**求职意向**/
+//        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
+//        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/求职意向.html";
+//        File file = new File(nameBaseInfo);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        resumeParser.getJobHuntBaseInfo(html);
+
+        /**个人信息**/
         ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
-        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/求职意向.html";
+        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/个人信息.html";
         File file = new File(nameBaseInfo);
         String html = FileUtils.readFileToString(file, "UTF-8");
-        resumeParser.getJobHuntBaseInfo(html);
+        resumeParser.getSeekerBaseInfo(html);
 
 
     }
