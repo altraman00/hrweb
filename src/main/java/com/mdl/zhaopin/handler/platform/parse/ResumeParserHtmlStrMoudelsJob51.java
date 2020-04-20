@@ -22,7 +22,7 @@ import java.util.Map;
  * @ModificationHistory Who   When     What
  * ------------    --------------    ---------------------------------
  */
-public class ResumeParserHtmlStrModulesJob51 extends AbstractResumeParser implements ResumeStrParser {
+public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implements ResumeStrParser {
 
     @Override
     public String getName() {
@@ -49,7 +49,7 @@ public class ResumeParserHtmlStrModulesJob51 extends AbstractResumeParser implem
         Map<String, String> moduleMap = getResumeMoudelMap(resumeHtml);
         System.out.println("moduleMap:" + JsonTools.obj2String(moduleMap));
 
-        //2、各个模块进行接续获取数据
+        //2、各个模块进行解析获取数据
         parseResumeMap(moduleMap);
 
         return resume;
@@ -350,7 +350,7 @@ public class ResumeParserHtmlStrModulesJob51 extends AbstractResumeParser implem
         String filePath = "/Users/admin/Desktop/简历解析/51job-插件-2.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
-        ResumeParserHtmlStrModulesJob51 resumeParser = new ResumeParserHtmlStrModulesJob51();
+        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
         ResumeJob51 resume = (ResumeJob51) resumeParser.parse(html);
 //        System.out.println(JsonTools.obj2String(resume));
     }
