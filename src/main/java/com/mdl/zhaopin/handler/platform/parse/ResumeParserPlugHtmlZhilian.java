@@ -11,7 +11,9 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Project : reusme-parse
@@ -331,27 +333,45 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
     /**
      * 求职意向
      *
-     * @param resumeDetail
+     * @param JobHuntBaseInfoHtml
      */
-    private void getJobHuntBaseInfo(Element resumeDetail) {
-        //求职意向
-        Elements dl = resumeDetail.select("div.resume-content__section.is-career-objective > div > dl > dd");
-        if (dl.size() > 0) {
-            String 期望工作地点 = dl.get(0) == null ? "" : dl.get(0).text().trim();
-            String 期望月薪 = dl.get(1) == null ? "" : dl.get(1).text().trim();
-            String 目前状况 = dl.get(2) == null ? "" : dl.get(2).text().trim();
-            String 期望工作性质 = dl.get(3) == null ? "" : dl.get(3).text().trim();
-            String 期望从事职业 = dl.get(4) == null ? "" : dl.get(4).text().trim();
-            String 期望从事行业 = dl.get(5) == null ? "" : dl.get(5).text().trim();
+    private void getJobHuntBaseInfo(String JobHuntBaseInfoHtml) {
 
-            System.out.println("\n期望工作地点：" + 期望工作地点 + "\n期望月薪:" + 期望月薪 + "\n目前状况："
-                    + 目前状况 + "\n期望工作性质:" + 期望工作性质 + "\n期望从事职业:" + 期望从事职业 + "\n期望从事行业:" + 期望从事行业);
+        Element resumeDetail = parse2Html(JobHuntBaseInfoHtml);
+
+        List<String> keyList = resumeDetail.select("[data-bind = foreach: { data: intents, as: 'intent' }]")
+                .select("dt").stream().map(Element::text).collect(Collectors.toList());
+
+        List<String> valList = resumeDetail.select("[data-bind = foreach: { data: intents, as: 'intent' }]")
+                .select("dd").stream().map(Element::text).collect(Collectors.toList());
+
+        System.out.println(keyList.size() + "---" + valList.size());
+
+        Map<String, String> resMap = new HashMap<>();
+        for (int i = 0; i < keyList.size(); i++) {
+            String key = keyList.get(i).replace("　", "").trim();
+            int valSize = valList.size();
+            if (i <= valSize) {
+                String val = valList.get(i).trim();
+                resMap.put(key, val);
+            }
         }
+
+        String 期望工作地点 = resMap.get("期望工作地点");
+        String 期望月薪 = resMap.get("期望月薪");
+        String 目前状况 = resMap.get("目前状况");
+        String 期望工作性质 = resMap.get("期望工作性质");
+        String 期望从事职业 = resMap.get("期望从事职业");
+        String 期望从事行业 = resMap.get("期望从事行业");
+
+        System.out.println("\n期望工作地点：" + 期望工作地点 + "\n期望月薪：" + 期望月薪 + "\n目前状况："
+                + 目前状况 + "\n期望工作性质：" + 期望工作性质 + "\n期望从事职业：" + 期望从事职业 + "\n期望从事行业：" + 期望从事行业);
     }
 
 
     /**
      * 基本信息
+     *
      * @param seekerBaseInfoHtml
      */
     private void getSeekerBaseInfo(String seekerBaseInfoHtml) {
@@ -371,17 +391,17 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
         /** 居住城市 **/
         String 居住城市 = seekerBaseInfo.select("[data-bind =textQ: currentCity()]").text();
 
-        System.out.println("\n名字：" + 名字 + "\n性别：" + 性别 + "\n年龄：" + 年龄 + "\n工作年限：" + 工作年限 + "\n学历：" + 学历 + "\n居住城市：" + 居住城市 );
+        System.out.println("\n名字：" + 名字 + "\n性别：" + 性别 + "\n年龄：" + 年龄 + "\n工作年限：" + 工作年限 + "\n学历：" + 学历 + "\n居住城市：" + 居住城市);
 
     }
 
-    /**
-     * 手机：18600904162 E-mail：18600904162@163.com
-     **/
-    protected void parseContactMethod(ResumeZhilian resume, String contact) {
-        resume.setPhone(intercept(contact, "手机：", "E-mail："));
-        resume.setMail(intercept(contact, "E-mail：", null));
-    }
+//    /**
+//     * 手机：18600904162 E-mail：18600904162@163.com
+//     **/
+//    protected void parseContactMethod(ResumeZhilian resume, String contact) {
+//        resume.setPhone(intercept(contact, "手机：", "E-mail："));
+//        resume.setMail(intercept(contact, "E-mail：", null));
+//    }
 
 
     /**
@@ -405,11 +425,17 @@ public class ResumeParserPlugHtmlZhilian extends AbstractResumeParser implements
 //        ResumeZhilian resume = (ResumeZhilian) resumeParser.parse(html);
 
 
-        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/基本信息.html";
+//        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/基本信息.html";
+//        File file = new File(filePath);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
+//        resumeParser.getSeekerBaseInfo(html);
+
+        String filePath = "/Users/admin/Desktop/简历解析/智联招聘-插件-任女士/求职意向.html";
         File file = new File(filePath);
         String html = FileUtils.readFileToString(file, "UTF-8");
         ResumeParserPlugHtmlZhilian resumeParser = new ResumeParserPlugHtmlZhilian();
-        resumeParser.getSeekerBaseInfo(html);
+        resumeParser.getJobHuntBaseInfo(html);
 
     }
 
