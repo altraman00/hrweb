@@ -33,9 +33,7 @@ public class ResumeParserPlugHtmlJob51 extends AbstractResumeParser implements R
         if (file == null) {
             return false;
         } else {
-//            String name = file.getName();
-//            return name.startsWith("51Job") && name.endsWith(".插件");
-            return true;
+            return "".startsWith("51Job") && "".endsWith(".插件");
         }
     }
 
