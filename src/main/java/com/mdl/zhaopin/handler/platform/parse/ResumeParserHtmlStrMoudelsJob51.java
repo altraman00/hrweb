@@ -153,12 +153,9 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
      */
     private void getEduBaseInfo(String eduBaseInfoHtml) {
 
-        Element divInfo_tds_3 = parse2Html(eduBaseInfoHtml);
-
-        Elements divInfo_edu = divInfo_tds_3.select("tbody > tr:nth-child(2)");
-        Elements select = divInfo_edu.select("td > table > tbody > tr > td.p15");
-
-        for (Element element : select) {
+        Element divInfo = parse2Html(eduBaseInfoHtml);
+        Elements divInfo_edu = divInfo.select("body > table > tbody > tr > td.p15");
+        for (Element element : divInfo_edu) {
             Elements deu = element.select("td[valign] , td.phd");
             String 在校时间 = deu.get(0).text().trim();
             String 学校名字 = deu.get(1).text().trim();
@@ -386,12 +383,20 @@ public class ResumeParserHtmlStrMoudelsJob51 extends AbstractResumeParser implem
 //        resumeParser.getSeekerBaseInfo(html);
 
 
-        /**工作经历**/
+//        /**工作经历**/
+//        ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
+//        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/工作经历.html";
+//        File file = new File(nameBaseInfo);
+//        String html = FileUtils.readFileToString(file, "UTF-8");
+//        resumeParser.getWorkExpBaseInfo(html);
+
+
+        /**教育经历**/
         ResumeParserHtmlStrMoudelsJob51 resumeParser = new ResumeParserHtmlStrMoudelsJob51();
-        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/工作经历.html";
+        String nameBaseInfo = "/Users/admin/Desktop/简历解析/51job-插件-2/教育经历.html";
         File file = new File(nameBaseInfo);
         String html = FileUtils.readFileToString(file, "UTF-8");
-        resumeParser.getWorkExpBaseInfo(html);
+        resumeParser.getEduBaseInfo(html);
 
 
     }
