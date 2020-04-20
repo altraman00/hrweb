@@ -2,6 +2,8 @@ package com.mdl.zhaopin.handler.platform.parse;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @Project : reusme-parse
@@ -58,6 +60,48 @@ public abstract class AbstractResumeParser  {
             }
         }
         return result.trim();
+    }
+
+
+    /**
+     * 从文本中提取手机号
+     * @param sParam
+     * @return
+     */
+    protected String getTelnum(String sParam) {
+        if (sParam == null || sParam.length() <= 0) {
+            return null;
+        }
+        String ss = "(13\\d|14[579]|15[^4\\D]|17[^49\\D]|18\\d)\\d{8}";
+        return getPatternData(sParam, ss);
+    }
+
+
+    /**
+     * 从文本中提取邮箱
+     * @param sParam
+     * @return
+     */
+    protected String getEmailnum(String sParam) {
+        if (sParam == null || sParam.length() <= 0) {
+            return null;
+        }
+        String ss = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}";
+        return getPatternData(sParam, ss);
+    }
+
+    private String getPatternData(String sParam, String ss) {
+        Pattern pattern = Pattern.compile(ss);
+        Matcher matcher = pattern.matcher(sParam);
+        StringBuffer bf = new StringBuffer();
+        while (matcher.find()) {
+            bf.append(matcher.group()).append(",");
+        }
+        int len = bf.length();
+        if (len > 0) {
+            bf.deleteCharAt(len - 1);
+        }
+        return bf.toString();
     }
 
 
