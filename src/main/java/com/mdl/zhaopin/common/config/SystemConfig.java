@@ -30,7 +30,7 @@ public class SystemConfig {
     public static final String id = UUID.randomUUID().toString();
 
     private static Properties pp = new Properties();
-    private static final String DEFAULT_CONFIG_FILE = "configs.properties";
+    private static final String DEFAULT_CONFIG_FILE = "application.properties";
 
     static {
         InputStream is = null;

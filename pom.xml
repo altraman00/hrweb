@@ -261,7 +261,7 @@
                 <!--是否替换资源中的属性-->
                 <filtering>true</filtering>
                 <includes>
-                    <include>configs.properties</include>
+                    <include>application.properties</include>
                     <include>logback-zhaopin.xml</include>
                 </includes>
             </resource>
