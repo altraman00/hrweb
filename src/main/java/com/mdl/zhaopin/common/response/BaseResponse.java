@@ -2,7 +2,7 @@ package com.mdl.zhaopin.common.response;
 
 /**
  * @Project : elearningweb
- * @Package Name : com.sunlands.elearning.console.common
+ * @Package Name : com.mdl.elearning.console.common
  * @Author : xiekun 提供统一的REST相应对象封装  用于提供返回对象的封装
  * @Create Date : 2018年06月08日 下午2:53
  * @ModificationHistory Who   When     What

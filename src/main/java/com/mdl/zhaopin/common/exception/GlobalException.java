@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @Project : zhaopin-cloud
- * @Package Name : com.sunlands.zhaopin.dtos.config.validator.exception
+ * @Package Name : com.mdl.zhaopin.dtos.config.validator.exception
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2019年11月25日 22:24

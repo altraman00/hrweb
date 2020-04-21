@@ -2,7 +2,7 @@ package com.mdl.zhaopin.common.config;
 
 /**
  * @Project : elearningweb
- * @Package Name : com.sunlands.framework.config
+ * @Package Name : com.mdl.framework.config
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2018年07月25日 上午10:23

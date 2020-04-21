@@ -1,15 +1,12 @@
 package com.mdl.zhaopin.service.impl;
 
 import com.mdl.zhaopin.DTO.ResumeBaseDTO;
-import com.mdl.zhaopin.handler.hanlp.parse.StrategyParseFile;
+import com.mdl.zhaopin.handler.hanlp.parse.*;
 import com.mdl.zhaopin.service.ParseResumeService;
-import com.mdl.zhaopin.handler.hanlp.parse.HanlpPraseResume;
-import com.mdl.zhaopin.handler.hanlp.parse.TurnHtmlToText;
-import com.mdl.zhaopin.handler.hanlp.parse.TurnPdfToText;
-import com.mdl.zhaopin.handler.hanlp.parse.TurnTxtToText;
-import com.mdl.zhaopin.handler.hanlp.parse.TurnWordToText;
 import com.mdl.zhaopin.utils.CheckFileType;
 import com.mdl.zhaopin.utils.JsonTools;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -17,6 +14,9 @@ import java.util.List;
 
 @Component
 public class ParseResumeServiceImpl implements ParseResumeService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ParseResumeServiceImpl.class);
+
 
     @Override
     public ResumeBaseDTO getResumeInfo(String filePath) throws IOException {
@@ -77,6 +77,11 @@ public class ParseResumeServiceImpl implements ParseResumeService {
         System.out.println(resumeStr + "/n");
         return resume;
 
+    }
+
+    @Override
+    public void saveResume() {
+//        logger.debug("saveResume-->saveResume-->saveResume-->saveResume-->saveResume");
     }
 
 }

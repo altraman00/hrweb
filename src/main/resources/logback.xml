@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <contextName>zhaopin-web-api</contextName>
+    <property name="APP_NAME" value="resume-parse" />
+    <property name="systemId" value="resume.parse" />
+    <include resource="logback-zhaopin.xml"/>
+    <logger name="org.springframework.boot" level="INFO" additivity="true" />
+    <logger name="com.mdl" level="DEBUG" additivity="true" />
+    <logger name="org.thymeleaf" level="ERROR" additivity="true" />
+    <logger name="org.springframework.security" level="INFO" additivity="true" />
+
+</configuration>

@@ -8,4 +8,6 @@ public interface ParseResumeService {
 
 	ResumeBaseDTO getResumeInfo(String file) throws IOException;
 
+	void saveResume();
+
 }
