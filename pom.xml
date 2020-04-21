@@ -195,9 +195,8 @@
     </dependencies>
 
 
-<!--
     <profiles>
-        &lt;!&ndash;本地&ndash;&gt;
+        <!--本地-->
         <profile>
             <id>local</id>
             <activation>
@@ -222,7 +221,7 @@
             </properties>
         </profile>
 
-        &lt;!&ndash;生产环境&ndash;&gt;
+        <!--生产环境-->
         <profile>
             <id>prod</id>
             <properties>
@@ -241,13 +240,14 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>mapper/*</include>
+                    <include>logback.xml</include>
                 </includes>
             </resource>
 
             <resource>
                 <directory>src/main/resources/profile</directory>
                 <filtering>true</filtering>
-                &lt;!&ndash; 资源根目录排除各环境的配置，使用单独的资源目录来指定 &ndash;&gt;
+                <!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
                 <excludes>
                     <exclude>local/*</exclude>
                     <exclude>dev/*</exclude>
@@ -258,7 +258,7 @@
 
             <resource>
                 <directory>src/main/resources/profile/${package.environment}</directory>
-                &lt;!&ndash;是否替换资源中的属性&ndash;&gt;
+                <!--是否替换资源中的属性-->
                 <filtering>true</filtering>
                 <includes>
                     <include>application.properties</include>
@@ -274,6 +274,5 @@
             </plugin>
         </plugins>
     </build>
--->
 
 </project>
