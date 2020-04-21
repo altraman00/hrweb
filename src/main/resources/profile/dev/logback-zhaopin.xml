@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
 
-    <!--<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />-->
-    <!--<conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />-->
-    <!--<conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />-->
-
-
     <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} [%X{TRACE_ID} %X{TRACE_PID}] : %m%n"/>
     <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} [%X{TRACE_ID} %X{TRACE_PID}] : %m%n"/>
 
@@ -47,15 +42,15 @@
     </root>
 
 
-    <logger name="com.mdl.zhaopin" level="DEBUG" additivity="true"/>
-    <logger name="com.mdl.zhaopin.mapper" level="INFO" additivity="true"/>
+    <logger name="com.msl" level="DEBUG" additivity="true"/>
+    <logger name="com.msl.zhaopin.repository" level="ERROR" additivity="true"/>
     <logger name="org.springframework" level="ERROR" additivity="true"/>
     <logger name="org.springframework.web.servlet.mvc" level="INFO" additivity="true"/>
-    <logger name="springfox.documentation" level="ERROR" additivity="true"/>
     <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="ERROR" additivity="true"/>
     <logger name="org.springframework.boot" level="INFO" additivity="true"/>
     <logger name="org.mybatis.spring" level="ERROR" additivity="true" />
     <logger name="org.hibernate" level="ERROR" additivity="true" />
-
+    <logger name="springfox.documentation" level="ERROR" additivity="true"/>
 
 </included>
+
