@@ -40,3 +40,21 @@ http://hanlp.linrunsoft.com/index.html
 https://github.com/hankcs/HanLP
 
 详细配置可以参考： http://blog.csdn.net/a_step_further/article/details/50333961
+
+
+--------------------------------------------------------------------------
+本工程相关API：
+
+测试open接口：http://127.0.0.1:8080/open/hello
+
+查看项目相应指标地址：http://127.0.0.1:9000/actuator/prometheus
+
+查看项目所有actuator地址：http://127.0.0.1:9000/actuator
+
+
+
+项目中对51job和智联对html简历进行解析，前提条件是分别截取了不分html，并不是所有的html
+
+51job获取html脚本 ： ```document.querySelector('#divResume').outerHTML```
+
+智联获取html脚本 ： ```document.getElementById('resume-detail-wrapper').outerHTML```
