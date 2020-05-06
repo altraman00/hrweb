@@ -1,8 +1,9 @@
 package com.mdl.zhaopin;
 
+import com.mdl.zhaopin.DTO.ResumeBaseDTO;
 import com.mdl.zhaopin.service.ParseResumeService;
 import com.mdl.zhaopin.service.impl.ParseResumeServiceImpl;
-import com.mdl.zhaopin.utils.JsonTools;
+import com.mdl.zhaopin.utils.JSONUtils;
 
 import java.io.IOException;
 
@@ -25,7 +26,7 @@ public class HanlpTest {
         ParseResumeService service = new ParseResumeServiceImpl();
         ResumeBaseDTO resumeInfo = service.getResumeInfo(resumePath);
 
-        System.out.println(JsonTools.obj2String(resumeInfo));
+        System.out.println(JSONUtils.objectToJson(resumeInfo));
 
     }
 

@@ -6,6 +6,8 @@ public enum ResultCode {
 	,ERROR(Result.ERROR,"系统错误")
 	,FORBIDDEN(403,"token失效")
 	,BIND_ERROR(400,"参数不合法")
+	,PLATFORM_ERROR(10001,"暂不支持该平台的简历解析")
+	,RESUME_PARSE_FAILED(10002,"简历解析失败")
 
 	;
 

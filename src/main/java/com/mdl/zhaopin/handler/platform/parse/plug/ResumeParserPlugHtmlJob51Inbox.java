@@ -1,6 +1,9 @@
 package com.mdl.zhaopin.handler.platform.parse.plug;
 
+import com.mdl.zhaopin.DTO.ResumeBaseDTO;
+import com.mdl.zhaopin.DTO.ResumeParseEducationDTO;
 import com.mdl.zhaopin.DTO.ResumeParseSkillsDTO;
+import com.mdl.zhaopin.DTO.ResumeParseWorkExpDTO;
 import com.mdl.zhaopin.enums.InWayEnums;
 import com.mdl.zhaopin.enums.PlatformEnums;
 import com.mdl.zhaopin.handler.platform.parse.AbstractResumeParser;
