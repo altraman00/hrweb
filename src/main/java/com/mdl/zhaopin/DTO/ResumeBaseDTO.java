@@ -1,6 +1,6 @@
 package com.mdl.zhaopin.DTO;
 
-import com.sunlands.zhaopin.entity.BiResumeEntity;
+import com.mdl.zhaopin.entity.BiResumeEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

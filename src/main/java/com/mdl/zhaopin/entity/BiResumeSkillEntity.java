@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  * @Project : resume-parse
- * @Package Name : com.sunlands.zhaopin.entity
+ * @Package Name : com.mdl.zhaopin.entity
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2020年04月21日 18:50

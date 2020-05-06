@@ -2,7 +2,7 @@ package com.mdl.zhaopin.DTO;
 
 /**
  * @Project : zhaopin
- * @Package Name : com.sunlands.zhaopin.dtos
+ * @Package Name : com.mdl.zhaopin.dtos
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2019年12月10日 17:25

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 /**
  * @Project : zhaopin
- * @Package Name : com.sunlands.zhaopin.model.entity.resume
+ * @Package Name : com.mdl.zhaopin.model.entity.resume
  * @Description : TODO
  * @Author : admin
  * @Create Date : 2019年06月18日 15:43

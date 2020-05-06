@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Project : resume-parse
- * @Package Name : com.sunlands.zhaopin.DTO
+ * @Package Name : com.mdl.zhaopin.DTO
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2020年04月21日 18:29

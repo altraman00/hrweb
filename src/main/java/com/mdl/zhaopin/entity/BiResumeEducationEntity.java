@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * @Project : zhaopin
- * @Package Name : com.sunlands.zhaopin.model.entity
+ * @Package Name : com.mdl.zhaopin.model.entity
  * @Description : TODO
  * @Author : eleven
  * @Create Date : 2019年09月20日 17:27

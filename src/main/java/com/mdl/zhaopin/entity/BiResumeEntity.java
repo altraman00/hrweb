@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * @Project : resume-parse
- * @Package Name : com.sunlands.zhaopin.entity
+ * @Package Name : com.mdl.zhaopin.entity
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2020年04月21日 17:23

@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * @Project : resume-parse
- * @Package Name : com.sunlands.zhaopin.DTO
+ * @Package Name : com.mdl.zhaopin.DTO
  * @Description : TODO
  * @Author : xiekun
  * @Create Date : 2020年04月24日 17:34
