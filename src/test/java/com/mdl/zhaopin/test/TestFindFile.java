@@ -84,7 +84,7 @@ public class TestFindFile {
 
     public static void main(String[] args) {
         TestFindFile findFile = new TestFindFile();
-        List<File> files = findFile.searchFiles(new File("/Users/admin/Documents/workspace/sunlands/zhaopin_cloud/zhaopin_cloud"), ".mvn");
+        List<File> files = findFile.searchFiles(new File("/Users/admin/Documents/workspace/mdl"), ".mvn");
         System.out.println("\n共找到:" + files.size() + "个文件");
         for (File file : files) {
             System.out.println(file.getAbsolutePath());
