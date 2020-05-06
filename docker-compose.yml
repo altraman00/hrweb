@@ -1,0 +1,12 @@
+version: '2'
+services:
+  resume-parse:
+    container_name: resume-parse
+    restart: always
+    image: fec/zhaopin/resume-parse
+    volumes:
+      - /opt/projects/zhaopin:/opt/projects/zhaopin
+#      - /opt/projects/cosfs:/opt/projects/cosfs
+    ports:
+    - 8284:8080
+
