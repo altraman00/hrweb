@@ -2,7 +2,7 @@ package com.mdl.zhaopin.service.impl;
 
 import com.mdl.zhaopin.DTO.ResumeBaseDTO;
 import com.mdl.zhaopin.handler.hanlp.parse.*;
-import com.mdl.zhaopin.service.ParseResumeService;
+import com.mdl.zhaopin.service.NLPParseResumeService;
 import com.mdl.zhaopin.utils.CheckFileType;
 import com.mdl.zhaopin.utils.JSONUtils;
 import org.slf4j.Logger;
@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.util.List;
 
 @Component
-public class ParseResumeServiceImpl implements ParseResumeService {
+public class NLPParseResumeServiceImpl implements NLPParseResumeService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ParseResumeServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(NLPParseResumeServiceImpl.class);
 
 
     @Override
@@ -25,26 +25,26 @@ public class ParseResumeServiceImpl implements ParseResumeService {
         String fileType = CheckFileType.getFileType(filePath);
 
         //下面使用策略模式，对不同格式的文件提取文本内容
-        StrategyParseFile strategyParseFile = new StrategyParseFile();
+        StrategyNLPParseFile strategyNLPParseFile = new StrategyNLPParseFile();
         if (fileType != null) {
             if (fileType.endsWith("htm") || fileType.endsWith("html")) {
-                strategyParseFile.setParseFileStrategy(new TurnHtmlToText(filePath));
+                strategyNLPParseFile.setParseFileStrategy(new TurnHtmlToText(filePath));
             } else if (fileType.endsWith("wps") || fileType.endsWith("doc") || filePath.endsWith("docx")) {
-                strategyParseFile.setParseFileStrategy(new TurnWordToText(filePath));
+                strategyNLPParseFile.setParseFileStrategy(new TurnWordToText(filePath));
             } else if (fileType.endsWith("pdf")) {
-                strategyParseFile.setParseFileStrategy(new TurnPdfToText(filePath));
+                strategyNLPParseFile.setParseFileStrategy(new TurnPdfToText(filePath));
             } else if (fileType.endsWith("txt")) {
-                strategyParseFile.setParseFileStrategy(new TurnTxtToText(filePath));
+                strategyNLPParseFile.setParseFileStrategy(new TurnTxtToText(filePath));
             }
         }
 
         //txt文本格式，上述方法校验不出来，先暂时直接设置用txt解析
-        if(filePath.endsWith("txt")){
-            strategyParseFile.setParseFileStrategy(new TurnTxtToText(filePath));
+        if (filePath.endsWith("txt")) {
+            strategyNLPParseFile.setParseFileStrategy(new TurnTxtToText(filePath));
         }
 
         //使用nlp解析方式对文件进行解析
-        HanlpPraseResume hanlpPraseResume = strategyParseFile.readFile().separateWords();
+        HanlpPraseResume hanlpPraseResume = strategyNLPParseFile.readFile().separateWords();
         int age = hanlpPraseResume.getAge();
         String name = hanlpPraseResume.getName();
         String email = hanlpPraseResume.getEmail();
@@ -79,9 +79,5 @@ public class ParseResumeServiceImpl implements ParseResumeService {
 
     }
 
-    @Override
-    public void saveResume() {
-//        logger.debug("saveResume-->saveResume-->saveResume-->saveResume-->saveResume");
-    }
 
 }

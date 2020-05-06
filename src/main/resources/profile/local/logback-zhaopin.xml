@@ -4,7 +4,7 @@
     <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} [%X{TRACE_ID} %X{TRACE_PID}] : %m%n"/>
     <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} [%X{TRACE_ID} %X{TRACE_PID}] : %m%n"/>
 
-    <property name="LOG_HOME" value="/opt/projects/zhaopin/log" />
+    <property name="LOG_HOME" value="./" />
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoder默认配置为PartternLayoutEncoder    -->
@@ -42,8 +42,8 @@
     </root>
 
 
-    <logger name="com.msl" level="DEBUG" additivity="true"/>
-    <logger name="com.msl.zhaopin.repository" level="ERROR" additivity="true"/>
+    <logger name="com.mdl" level="DEBUG" additivity="true"/>
+    <logger name="com.mdl.zhaopin.repository" level="ERROR" additivity="true"/>
     <logger name="org.springframework" level="ERROR" additivity="true"/>
     <logger name="org.springframework.web.servlet.mvc" level="INFO" additivity="true"/>
     <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="ERROR" additivity="true"/>

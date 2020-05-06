@@ -1,7 +1,6 @@
 package com.mdl.zhaopin.utils;
 
 import com.hankcs.hanlp.HanLP;
-import com.hankcs.hanlp.dictionary.CoreSynonymDictionary;
 import com.hankcs.hanlp.dictionary.CustomDictionary;
 import org.jsoup.Jsoup;
 

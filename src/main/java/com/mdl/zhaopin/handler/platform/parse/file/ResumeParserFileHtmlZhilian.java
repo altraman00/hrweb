@@ -1,4 +1,4 @@
-//package com.mdl.zhaopin.handler.platform.parse;
+package com.mdl.zhaopin.handler.platform.parse.file;//package com.mdl.zhaopin.handler.platform.parse;
 //
 //import com.mdl.zhaopin.handler.platform.resume.Resume;
 //import com.mdl.zhaopin.handler.platform.resume.ResumeZhilian;

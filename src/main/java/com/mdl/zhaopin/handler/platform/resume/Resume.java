@@ -1,5 +1,12 @@
 package com.mdl.zhaopin.handler.platform.resume;
 
+import com.mdl.zhaopin.DTO.ResumeBaseDTO;
+import com.mdl.zhaopin.DTO.ResumeParseEducationDTO;
+import com.mdl.zhaopin.DTO.ResumeParseSkillsDTO;
+import com.mdl.zhaopin.DTO.ResumeParseWorkExpDTO;
+
+import java.util.List;
+
 /**
  * @Project : reusme-parse
  * @Package Name : com.mdl.zhaopin.handler.platform
@@ -11,48 +18,16 @@ package com.mdl.zhaopin.handler.platform.resume;
  */
 public interface Resume {
 
-    /** 姓名 */
-    String getName();
+    //基本信息
+    ResumeBaseDTO getResumeBase();
 
-    /** 年龄 */
-    String getAge();
+    //教育经历
+    List<ResumeParseEducationDTO> getEduList();
 
-    /** 性别 */
-    String getSex();
+    //工作经验
+    List<ResumeParseWorkExpDTO> getWorkExpList();
 
-    /** 学历 */
-    String getEducation();
-
-    /** 毕业院校 */
-    String getSchool();
-
-    /** 工作时间 */
-    String getWorkDuration();
-
-    /** 联系电话 */
-    String getPhone();
-
-    /** 电子邮箱 */
-    String getMail();
-
-    /** 简历来源渠道 */
-    String getSource();
-
-    /** 生日 */
-    String getBirthday();
-
-    /** 职位 */
-    String getJob();
-
-    /** 所在公司 */
-    String getCompany();
-
-    /** 所在城市 */
-    String getCity();
-
-    /** 现住址 */
-    String getAddress();
-
-
+    //技能
+    List<ResumeParseSkillsDTO> getSkillList();
 
 }

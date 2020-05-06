@@ -42,8 +42,8 @@
     </root>
 
 
-    <logger name="com.msl" level="DEBUG" additivity="true"/>
-    <logger name="com.msl.zhaopin.repository" level="ERROR" additivity="true"/>
+    <logger name="com.mdl" level="DEBUG" additivity="true"/>
+    <logger name="com.mdl.zhaopin.repository" level="ERROR" additivity="true"/>
     <logger name="org.springframework" level="ERROR" additivity="true"/>
     <logger name="org.springframework.web.servlet.mvc" level="INFO" additivity="true"/>
     <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="ERROR" additivity="true"/>

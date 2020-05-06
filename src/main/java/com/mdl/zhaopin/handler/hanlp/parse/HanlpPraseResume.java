@@ -256,7 +256,7 @@ public abstract class HanlpPraseResume {
             }
         }
 
-        String url = Constant.TENCENT_MAP_API + addressStr + "&key=" + Constant.TENCENT_MAP_KEY;
+        String url = Constant.TENCENT_MAP_API + addressStr + "&msg=" + Constant.TENCENT_MAP_KEY;
 
         // System.out.println(url);
 
